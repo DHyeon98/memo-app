@@ -20,10 +20,11 @@ export default function SubmitButton({
 const Button = styled.Pressable`
   height: 40px;
   width: 100%;
-  background-color: red;
+  background-color: #47b976;
   justify-content: center;
   align-items: center;
 `;
 const ButtonText = styled.Text`
   color: #fff;
+  font-family: "Pretendard";
 `;

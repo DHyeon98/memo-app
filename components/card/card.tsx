@@ -29,10 +29,13 @@ const CardContainer = styled.View`
 `;
 const DateText = styled.Text`
   color: #1c1c1c;
+  font-family: "Pretendard-Bold";
 `;
 const Text = styled.Text`
   color: #1c1c1c;
   margin-top: 4px;
+  line-height: 20px;
+  font-family: "Pretendard";
 `;
 const ButtonBox = styled.View`
   flex-direction: row;

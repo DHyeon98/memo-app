@@ -1,14 +1,17 @@
-import { TextInputProps } from "react-native";
-import styled from "styled-components/native";
+import { StyleSheet, TextInput, TextInputProps } from "react-native";
 
 export default function Textarea(prop: TextInputProps) {
-  return <TextareaInput multiline numberOfLines={4} {...prop} />;
+  return <TextInput style={styles.input} multiline={true} />;
 }
 
-const TextareaInput = styled.TextInput`
-  width: 100%;
-  padding: 5px 0;
-  border: 1px solid red;
-  background-color: #fff;
-  padding: 10px;
-`;
+const styles = StyleSheet.create({
+  input: {
+    width: "100%",
+    height: 100,
+    borderColor: "#47b976",
+    backgroundColor: "#fff",
+    borderWidth: 1,
+    padding: 10,
+    textAlignVertical: "top",
+  },
+});

@@ -2,12 +2,10 @@ import { getItem, setItem } from "@/apis";
 import Card from "@/components/card/card";
 import SubmitButton from "@/components/submit-button/submit-button";
 import Textarea from "@/components/textarea/textarea";
-import { useFonts } from "expo-font";
 import { useEffect, useState } from "react";
 import { FlatList } from "react-native";
 import styled from "styled-components/native";
 import * as Font from "expo-font";
-import { createGlobalStyle } from "styled-components";
 
 type DataItem = {
   id: string;
@@ -20,9 +18,8 @@ export default function Index() {
 
   const [fontsLoaded] = Font.useFonts({
     Pretendard: require("../assets/fonts/Pretendard-Medium.ttf"),
+    "Pretendard-Bold": require("../assets/fonts/Pretendard-Bold.ttf"),
   });
-
-  if (!fontsLoaded) return null;
 
   const handleData = async () => {
     const storedData = await getItem("data");
@@ -48,9 +45,10 @@ export default function Index() {
     handleData();
   }, []);
 
+  if (!fontsLoaded) return null;
+
   return (
     <>
-      <GlobalStyles />
       <Container>
         <Form>
           <Textarea value={text} onChangeText={setText} />
@@ -70,9 +68,4 @@ const Container = styled.SafeAreaView`
 `;
 const Form = styled.View`
   gap: 10px;
-`;
-const GlobalStyles = createGlobalStyle`
-  div {
-    font-family: "Pretendard" !important;
-  }
 `;
