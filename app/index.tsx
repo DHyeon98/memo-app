@@ -1,8 +1,13 @@
 import { getItem, setItem } from "@/apis";
+import Card from "@/components/card/card";
+import SubmitButton from "@/components/submit-button/submit-button";
 import Textarea from "@/components/textarea/textarea";
+import { useFonts } from "expo-font";
 import { useEffect, useState } from "react";
-import { Text, View, Button } from "react-native";
+import { FlatList } from "react-native";
 import styled from "styled-components/native";
+import * as Font from "expo-font";
+import { createGlobalStyle } from "styled-components";
 
 type DataItem = {
   id: string;
@@ -12,6 +17,12 @@ type DataItem = {
 export default function Index() {
   const [data, setData] = useState<DataItem[]>([]);
   const [text, setText] = useState("");
+
+  const [fontsLoaded] = Font.useFonts({
+    Pretendard: require("../assets/fonts/Pretendard-Medium.ttf"),
+  });
+
+  if (!fontsLoaded) return null;
 
   const handleData = async () => {
     const storedData = await getItem("data");
@@ -27,7 +38,7 @@ export default function Index() {
       id: Date.now().toString(),
       text: text,
     };
-    const updatedData = [...data, newData];
+    const updatedData = [newData, ...data];
     await setItem("data", JSON.stringify(updatedData));
     setText("");
     await handleData();
@@ -36,25 +47,32 @@ export default function Index() {
   useEffect(() => {
     handleData();
   }, []);
+
   return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <Textarea value={text} onChangeText={setText} />
-      <Button title="submit" onPress={handleSubmit} />
-      {data.map((item) => (
-        <Text key={item.id}>{item.text}</Text>
-      ))}
-    </View>
+    <>
+      <GlobalStyles />
+      <Container>
+        <Form>
+          <Textarea value={text} onChangeText={setText} />
+          <SubmitButton handleSubmit={handleSubmit}>제출</SubmitButton>
+        </Form>
+        <FlatList
+          data={data}
+          renderItem={({ item }) => <Card text={item.text} date={item.id} />}
+          keyExtractor={(item) => item.id}
+        />
+      </Container>
+    </>
   );
 }
-// const Button = styled.Pressable`
-//   background-color: red;
-// `;
-const Input = styled.TextInput`
-  background-color: blue;
+const Container = styled.SafeAreaView`
+  padding: 20px;
+`;
+const Form = styled.View`
+  gap: 10px;
+`;
+const GlobalStyles = createGlobalStyle`
+  div {
+    font-family: "Pretendard" !important;
+  }
 `;
