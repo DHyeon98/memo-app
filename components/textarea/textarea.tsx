@@ -1,7 +1,14 @@
 import { StyleSheet, TextInput, TextInputProps } from "react-native";
 
-export default function Textarea(prop: TextInputProps) {
-  return <TextInput style={styles.input} multiline={true} />;
+export default function Textarea(props: TextInputProps) {
+  return (
+    <TextInput
+      style={styles.input}
+      multiline={true}
+      defaultValue={props.defaultValue}
+      {...props}
+    />
+  );
 }
 
 const styles = StyleSheet.create({
@@ -13,5 +20,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     padding: 10,
     textAlignVertical: "top",
+    fontSize: 14,
+    fontFamily: "Pretendard",
   },
 });

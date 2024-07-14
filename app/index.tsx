@@ -52,19 +52,23 @@ export default function Index() {
       <Container>
         <Form>
           <Textarea value={text} onChangeText={setText} />
-          <SubmitButton handleSubmit={handleSubmit}>제출</SubmitButton>
+          <SubmitButton handleSubmit={handleSubmit}>추가</SubmitButton>
         </Form>
         <FlatList
           data={data}
-          renderItem={({ item }) => <Card text={item.text} date={item.id} />}
+          renderItem={({ item }) => (
+            <Card updateData={handleData} text={item.text} date={item.id} />
+          )}
           keyExtractor={(item) => item.id}
         />
       </Container>
     </>
   );
 }
+
 const Container = styled.SafeAreaView`
-  padding: 20px;
+  padding: 16px;
+  flex: 1;
 `;
 const Form = styled.View`
   gap: 10px;
