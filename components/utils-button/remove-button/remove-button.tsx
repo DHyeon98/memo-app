@@ -1,4 +1,3 @@
-import { getItem, setItem } from "@/apis";
 import { UtilButtonType } from "../types";
 import UtilsButton from "../utils-button";
 import { handleRemoveData } from "@/utils/remove-list";
