@@ -2,11 +2,13 @@ import { conversionTime } from "@/utils/conversionTime";
 import styled from "styled-components/native";
 import RemoveButton from "../utils-button/remove-button/remove-button";
 import ModifyButton from "../utils-button/modify-button/modify-button";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import CompletionButton from "../completion-button/completion-button";
 import Textarea from "../textarea/textarea";
 import { handleRemoveData } from "@/utils/remove-list";
 import { getItem, setItem } from "@/apis";
+import { ThemeContext } from "@/contexts/themProvider";
+import { darkTheme, lightTheme } from "@/constants/theme";
 
 interface CardType {
   text: string;
@@ -21,6 +23,7 @@ interface DataType {
 export default function Card({ text, date, updateData }: CardType) {
   const [modifyState, setModifyState] = useState(false);
   const [modifyText, setModifyText] = useState(text);
+  const { theme } = useContext(ThemeContext);
 
   const hanldeModifyCompletion = async () => {
     const storedData = await getItem("data");
@@ -38,14 +41,16 @@ export default function Card({ text, date, updateData }: CardType) {
     }
   };
   return (
-    <CardContainer>
-      <DateText>{conversionTime(date)}</DateText>
+    <CardContainer theme={theme === "light" ? lightTheme : darkTheme}>
+      <DateText theme={theme === "light" ? lightTheme : darkTheme}>
+        {conversionTime(date)}
+      </DateText>
       {modifyState ? (
         <Textarea onChangeText={setModifyText} value={modifyText} />
       ) : (
-        <Text>{text}</Text>
+        <Text theme={theme === "light" ? lightTheme : darkTheme}>{text}</Text>
       )}
-      <ButtonBox>
+      <ButtonBox theme={theme === "light" ? lightTheme : darkTheme}>
         {modifyState ? (
           <CompletionButton handleCompletion={hanldeModifyCompletion} />
         ) : (
@@ -62,16 +67,16 @@ export default function Card({ text, date, updateData }: CardType) {
 const CardContainer = styled.View`
   width: 100%;
   padding: 10px;
-  background-color: #fff;
+  background-color: ${({ theme }) => theme.cardBg};
   margin-top: 10px;
 `;
 const DateText = styled.Text`
-  color: #1c1c1c;
   font-family: "Pretendard-Bold";
   margin-bottom: 4px;
+  color: ${({ theme }) => theme.textColor};
 `;
 const Text = styled.Text`
-  color: #1c1c1c;
+  color: ${({ theme }) => theme.textColor};
   line-height: 20px;
   font-family: "Pretendard";
 `;
@@ -80,6 +85,6 @@ const ButtonBox = styled.View`
   gap: 4px;
   margin-top: 10px;
   padding-top: 10px;
-  border-top-color: #ddd;
+  border-top-color: ${({ theme }) => theme.borderColor};
   border-top-width: 1px;
 `;

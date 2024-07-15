@@ -1,14 +1,13 @@
 import Textarea from "../textarea/textarea";
 import SubmitButton from "../submit-button/submit-button";
-import { useStorageData } from "@/hook/useStorageData";
 import styled from "styled-components/native";
 import { Dispatch } from "react";
 
-type FormProps = {
+interface FormProps {
   handleSubmit: () => void;
   text: string;
   setText: Dispatch<React.SetStateAction<string>>;
-};
+}
 
 export default function DataForm({ handleSubmit, text, setText }: FormProps) {
   return (
@@ -21,4 +20,5 @@ export default function DataForm({ handleSubmit, text, setText }: FormProps) {
 
 const FormContainer = styled.View`
   gap: 10px;
+  padding: 0 16px;
 `;
