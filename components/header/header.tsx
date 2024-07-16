@@ -1,12 +1,13 @@
 import styled from "styled-components/native";
 import ThemeButton from "../button/theme-button/theme-button";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { ThemeContext } from "@/contexts/themProvider";
 import { StyleSheet } from "react-native";
 import { darkTheme, lightTheme } from "@/constants/theme";
 import SortSvg from "../svg/sort";
 import LogoSvg from "../svg/logo";
+import Sort from "../sort/sort";
 
 export default function Header() {
   const { theme } = useContext(ThemeContext);
@@ -14,11 +15,7 @@ export default function Header() {
     <SafeAreaView
       style={[styles.basic, theme === "light" ? styles.light : styles.dark]}
     >
-      <SortSvg
-        width={30}
-        height={30}
-        fill={theme === "light" ? lightTheme.sortFill : darkTheme.sortFill}
-      />
+      <Sort />
       <HeaderTextContainer>
         <HeaderText theme={theme === "light" ? lightTheme : darkTheme}>
           메모장
@@ -46,6 +43,7 @@ const HeaderTextContainer = styled.View`
 `;
 const styles = StyleSheet.create({
   basic: {
+    zIndex: 10,
     position: "relative",
     flexDirection: "row",
     width: "100%",
