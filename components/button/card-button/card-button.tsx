@@ -9,7 +9,7 @@ interface StyledPropsType {
   backgroundColor: string;
 }
 
-export default function UtilsButton(props: PropsWithChildren<UtilButtonType>) {
+export default function CardButton(props: PropsWithChildren<UtilButtonType>) {
   return (
     <Button onPress={props.handleFun} backgroundColor={props.backgroundColor}>
       <Text>{props.children}</Text>

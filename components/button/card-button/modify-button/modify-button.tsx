@@ -1,4 +1,4 @@
-import UtilsButton from "../utils-button";
+import CardButton from "../card-button";
 import { Dispatch } from "react";
 
 interface ModifyButtonType {
@@ -10,8 +10,8 @@ export default function ModifyButton({ setModifyState }: ModifyButtonType) {
     setModifyState(true);
   };
   return (
-    <UtilsButton handleFun={handleModify} backgroundColor="rgb(66 66 232)">
+    <CardButton handleFun={handleModify} backgroundColor="rgb(66 66 232)">
       수정
-    </UtilsButton>
+    </CardButton>
   );
 }

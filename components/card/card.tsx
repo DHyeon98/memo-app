@@ -1,9 +1,9 @@
 import { conversionTime } from "@/utils/conversionTime";
 import styled from "styled-components/native";
-import RemoveButton from "../utils-button/remove-button/remove-button";
-import ModifyButton from "../utils-button/modify-button/modify-button";
+import RemoveButton from "../button/card-button/remove-button/remove-button";
+import ModifyButton from "../button/card-button/modify-button/modify-button";
 import { useContext, useState } from "react";
-import CompletionButton from "../completion-button/completion-button";
+import CompletionButton from "../button/completion-button/completion-button";
 import Textarea from "../textarea/textarea";
 import { handleRemoveData } from "@/utils/remove-list";
 import { getItem, setItem } from "@/apis";

@@ -1,5 +1,4 @@
-import { Dispatch } from "react";
-import UtilsButton from "../utils-button/utils-button";
+import CardButton from "../card-button/card-button";
 
 interface CompletionButtonType {
   handleCompletion: () => Promise<void>;
@@ -9,11 +8,11 @@ export default function CompletionButton({
   handleCompletion,
 }: CompletionButtonType) {
   return (
-    <UtilsButton
+    <CardButton
       handleFun={handleCompletion}
       backgroundColor="rgb(71, 185, 118)"
     >
       수정완료
-    </UtilsButton>
+    </CardButton>
   );
 }

@@ -1,5 +1,5 @@
 import styled from "styled-components/native";
-import ThemeButton from "../theme-button/theme-button";
+import ThemeButton from "../button/theme-button/theme-button";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useContext } from "react";
 import { ThemeContext } from "@/contexts/themProvider";

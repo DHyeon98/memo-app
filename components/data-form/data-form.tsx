@@ -1,5 +1,5 @@
 import Textarea from "../textarea/textarea";
-import SubmitButton from "../submit-button/submit-button";
+import SubmitButton from "../button/submit-button/submit-button";
 import styled from "styled-components/native";
 import { Dispatch } from "react";
 
