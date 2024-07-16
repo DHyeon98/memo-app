@@ -7,6 +7,8 @@ export const lightTheme = {
   buttonBg: "rgb(221, 221, 221)",
   buttonColor: "#fff",
   headerBg: "#fff",
+  sortFill: "#393939",
+  logoFill: "#000",
 };
 
 export const darkTheme = {
@@ -18,4 +20,6 @@ export const darkTheme = {
   buttonBg: "#fff",
   buttonColor: "#23242A",
   headerBg: "#323741",
+  sortFill: "#fff",
+  logoFill: "#fff",
 };

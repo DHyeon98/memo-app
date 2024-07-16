@@ -29,7 +29,8 @@ export default function ThemeButton() {
   );
 }
 const Button = styled.Pressable`
-  padding: 2px;
+  justify-content: center;
+  padding: 4px;
   border: none;
   border-radius: 50px;
   width: 60px;
