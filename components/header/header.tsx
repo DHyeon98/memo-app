@@ -1,16 +1,16 @@
 import styled from "styled-components/native";
 import ThemeButton from "../button/theme-button/theme-button";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { ThemeContext } from "@/contexts/themProvider";
 import { StyleSheet } from "react-native";
 import { darkTheme, lightTheme } from "@/constants/theme";
-import SortSvg from "../svg/sort";
 import LogoSvg from "../svg/logo";
 import Sort from "../sort/sort";
 
 export default function Header() {
   const { theme } = useContext(ThemeContext);
+
   return (
     <SafeAreaView
       style={[styles.basic, theme === "light" ? styles.light : styles.dark]}
@@ -39,7 +39,6 @@ const HeaderTextContainer = styled.View`
   display: flex;
   flex-direction: row;
   align-items: center;
-  margin-left: 41px;
 `;
 const styles = StyleSheet.create({
   basic: {
@@ -50,7 +49,6 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     paddingHorizontal: 16,
     paddingVertical: 20,
-    marginBottom: 30,
   },
   light: {
     backgroundColor: lightTheme.headerBg,

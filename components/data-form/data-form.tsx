@@ -20,5 +20,5 @@ export default function DataForm({ handleSubmit, text, setText }: FormProps) {
 
 const FormContainer = styled.View`
   gap: 10px;
-  padding: 0 16px;
+  margin-bottom: 10px;
 `;

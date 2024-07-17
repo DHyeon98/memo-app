@@ -1,5 +1,9 @@
 import { createContext, PropsWithChildren, useState } from "react";
 
+export interface ThemePropType {
+  theme: string;
+}
+
 export const ThemeContext = createContext({
   theme: "light",
   toggleTheme: () => {},

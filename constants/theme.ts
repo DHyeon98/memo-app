@@ -23,3 +23,11 @@ export const darkTheme = {
   sortFill: "#fff",
   logoFill: "#fff",
 };
+
+export const sortList = {
+  display: "flex",
+  flexDirection: "column",
+  gap: 10,
+};
+
+export const sortGrid = {};

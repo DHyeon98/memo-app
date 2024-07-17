@@ -1,26 +1,47 @@
 import SortSvg from "../svg/sort";
-import { useContext, useState } from "react";
+import { useContext, useRef, useState } from "react";
 import { ThemeContext } from "@/contexts/themProvider";
 import { darkTheme, lightTheme } from "@/constants/theme";
 import SortList from "./sort-list/sort-list";
-import { View, Pressable } from "react-native";
+import { Modal, View } from "react-native";
+import styled from "styled-components/native";
+import useDropdown from "@/hook/useDropdown";
 
 export default function Sort() {
   const { theme } = useContext(ThemeContext);
-  const [sortShow, setSortShow] = useState(false);
+  const sortRef = useRef(null);
+  const [isOpen, setOpen] = useDropdown(sortRef, false);
   const handleShowToggle = () => {
-    setSortShow(!sortShow);
+    setOpen(!isOpen);
+  };
+  const handleClose = () => {
+    setOpen(false);
   };
   return (
     <View>
-      <Pressable onPress={handleShowToggle}>
+      <FlexContainer onPress={handleShowToggle}>
         <SortSvg
           width={30}
           height={30}
           fill={theme === "light" ? lightTheme.sortFill : darkTheme.sortFill}
         />
-      </Pressable>
-      {sortShow && <SortList />}
+        <ButtonText theme={theme === "light" ? lightTheme : darkTheme}>
+          보기
+        </ButtonText>
+      </FlexContainer>
+      {isOpen && (
+        <SortList ref={sortRef} theme={theme} handleClose={handleClose} />
+      )}
     </View>
   );
 }
+const FlexContainer = styled.Pressable`
+  flex-direction: row;
+  align-items: center;
+  gap: 5;
+`;
+const ButtonText = styled.Text`
+  font-size: 16px;
+  font-family: "Pretendard-Bold";
+  color: ${({ theme }) => theme.textColor};
+`;

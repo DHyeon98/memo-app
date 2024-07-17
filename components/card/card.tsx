@@ -13,6 +13,7 @@ import { darkTheme, lightTheme } from "@/constants/theme";
 interface CardType {
   text: string;
   date: string;
+  index: number;
   updateData: () => void;
 }
 interface DataType {
@@ -20,7 +21,8 @@ interface DataType {
   text: string;
 }
 
-export default function Card({ text, date, updateData }: CardType) {
+export default function Card({ text, date, updateData, index }: CardType) {
+  const oddMargin = index % 2 === 0;
   const [modifyState, setModifyState] = useState(false);
   const [modifyText, setModifyText] = useState(text);
   const { theme } = useContext(ThemeContext);
@@ -41,7 +43,12 @@ export default function Card({ text, date, updateData }: CardType) {
     }
   };
   return (
-    <CardContainer theme={theme === "light" ? lightTheme : darkTheme}>
+    <CardContainer
+      theme={theme === "light" ? lightTheme : darkTheme}
+      style={{
+        marginRight: oddMargin ? 10 : 0,
+      }}
+    >
       <DateText theme={theme === "light" ? lightTheme : darkTheme}>
         {conversionTime(date)}
       </DateText>
@@ -65,14 +72,15 @@ export default function Card({ text, date, updateData }: CardType) {
 }
 
 const CardContainer = styled.View`
-  width: 100%;
+  width: 50%;
   padding: 10px;
   background-color: ${({ theme }) => theme.cardBg};
-  margin-top: 10px;
 `;
 const DateText = styled.Text`
   font-family: "Pretendard-Bold";
   margin-bottom: 4px;
+  word-break: keep-all;
+  width: 100%;
   color: ${({ theme }) => theme.textColor};
 `;
 const Text = styled.Text`
