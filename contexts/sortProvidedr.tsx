@@ -1,12 +1,12 @@
 import { createContext, PropsWithChildren, useState } from "react";
 
 export const SortContext = createContext({
-  sort: "basic",
+  sort: "LIST",
   toggleSort: (sortType: string) => {},
 });
 
 export const SortProvider = ({ children }: PropsWithChildren) => {
-  const [sort, setSort] = useState("basic");
+  const [sort, setSort] = useState("LIST");
   const toggleSort = (sortType: string) => {
     setSort(sortType);
   };

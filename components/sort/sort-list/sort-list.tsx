@@ -1,63 +1,62 @@
 import styled from "styled-components/native";
 import { StyleSheet, View } from "react-native";
 import { ThemePropType } from "@/contexts/themProvider";
-import { forwardRef, useContext } from "react";
+import { useContext } from "react";
 import { SortContext } from "@/contexts/sortProvidedr";
 import SortButton from "../sort-button/sort-button";
 import SortSvg from "@/components/svg/sort";
 import { darkTheme, lightTheme } from "@/constants/theme";
 import GridSvg from "@/components/svg/grid";
+import ThemeText from "@/components/theme-text/theme-text";
 
-interface SortType extends ThemePropType {
-  handleClose: () => void;
+interface SortListType extends ThemePropType {
+  closeModal: () => void;
 }
 
-const SortList = forwardRef<View, SortType>(({ theme, handleClose }, ref) => {
+export default function SortList({ theme, closeModal }: SortListType) {
   const { toggleSort } = useContext(SortContext);
   const handleSort = (sortType: string) => {
     toggleSort(sortType);
-    handleClose();
   };
   return (
     <View
       style={[styles.container, theme === "light" ? styles.light : styles.dark]}
-      ref={ref}
     >
       <FlexContainer>
-        <SortButton handleSort={() => handleSort("list")}>
+        <SortButton
+          handleSort={() => handleSort("LIST")}
+          closeModal={closeModal}
+        >
+          <ThemeText>리스트 스타일</ThemeText>
           <SortSvg
-            width={50}
-            height={50}
+            width={30}
+            height={30}
             fill={theme === "light" ? lightTheme.sortFill : darkTheme.sortFill}
           />
         </SortButton>
-        <SortButton handleSort={() => handleSort("grid")}>
+        <SortButton
+          handleSort={() => handleSort("GRID")}
+          closeModal={closeModal}
+        >
+          <ThemeText>격자 스타일</ThemeText>
           <GridSvg
-            width={50}
-            height={50}
+            width={30}
+            height={30}
             fill={theme === "light" ? lightTheme.sortFill : darkTheme.sortFill}
           />
         </SortButton>
       </FlexContainer>
     </View>
   );
-});
-export default SortList;
+}
 
 const styles = StyleSheet.create({
   container: {
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 1,
-    },
-    shadowOpacity: 0.22,
-    shadowRadius: 2.22,
-    elevation: 3,
-    zIndex: 10,
     position: "absolute",
-    top: 30,
-    left: 0,
+    width: 300,
+    top: "50%",
+    left: "50%",
+    transform: [{ translateX: -150 }, { translateY: -50 }],
     padding: 10,
     borderRadius: 8,
   },
@@ -69,7 +68,5 @@ const styles = StyleSheet.create({
   },
 });
 const FlexContainer = styled.View`
-  flex-direction: row;
   gap: 5px;
-  margin-top: 5px;
 `;

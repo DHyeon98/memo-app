@@ -6,7 +6,7 @@ interface ModifyButtonType {
 }
 
 export default function ModifyButton({ setModifyState }: ModifyButtonType) {
-  const handleModify = async () => {
+  const handleModify = () => {
     setModifyState(true);
   };
   return (

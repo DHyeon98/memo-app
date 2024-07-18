@@ -1,25 +1,18 @@
 import SortSvg from "../svg/sort";
-import { useContext, useRef, useState } from "react";
+import { useContext, useState } from "react";
 import { ThemeContext } from "@/contexts/themProvider";
 import { darkTheme, lightTheme } from "@/constants/theme";
 import SortList from "./sort-list/sort-list";
-import { Modal, View } from "react-native";
+import { View } from "react-native";
 import styled from "styled-components/native";
-import useDropdown from "@/hook/useDropdown";
+import { useModal } from "@/hook/useModal";
 
 export default function Sort() {
   const { theme } = useContext(ThemeContext);
-  const sortRef = useRef(null);
-  const [isOpen, setOpen] = useDropdown(sortRef, false);
-  const handleShowToggle = () => {
-    setOpen(!isOpen);
-  };
-  const handleClose = () => {
-    setOpen(false);
-  };
+  const { isOpen, openModal, closeModal, ModalComponent } = useModal();
   return (
     <View>
-      <FlexContainer onPress={handleShowToggle}>
+      <FlexContainer onPress={openModal}>
         <SortSvg
           width={30}
           height={30}
@@ -29,9 +22,9 @@ export default function Sort() {
           보기
         </ButtonText>
       </FlexContainer>
-      {isOpen && (
-        <SortList ref={sortRef} theme={theme} handleClose={handleClose} />
-      )}
+      <ModalComponent isOpen={isOpen} closeModal={closeModal}>
+        <SortList theme={theme} closeModal={closeModal} />
+      </ModalComponent>
     </View>
   );
 }

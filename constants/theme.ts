@@ -31,3 +31,7 @@ export const sortList = {
 };
 
 export const sortGrid = {};
+
+export const getCurrentTheme = (theme: string) => {
+  return theme === "light" ? lightTheme : darkTheme;
+};
