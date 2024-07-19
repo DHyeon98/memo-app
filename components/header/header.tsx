@@ -4,7 +4,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { useContext } from "react";
 import { ThemeContext } from "@/contexts/themProvider";
 import { StyleSheet } from "react-native";
-import { darkTheme, lightTheme } from "@/constants/theme";
+import { darkTheme, lightTheme, themeType } from "@/constants/theme";
 import LogoSvg from "../svg/logo";
 import Sort from "../sort/sort";
 
@@ -17,14 +17,8 @@ export default function Header() {
     >
       <Sort />
       <HeaderTextContainer>
-        <HeaderText theme={theme === "light" ? lightTheme : darkTheme}>
-          메모장
-        </HeaderText>
-        <LogoSvg
-          width={30}
-          height={30}
-          fill={theme === "light" ? lightTheme.sortFill : darkTheme.sortFill}
-        />
+        <HeaderText theme={themeType(theme)}>메모장</HeaderText>
+        <LogoSvg width={30} height={30} fill={themeType(theme)} />
       </HeaderTextContainer>
       <ThemeButton />
     </SafeAreaView>

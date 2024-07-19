@@ -1,18 +1,48 @@
 import styled from "styled-components/native";
 import Card from "@/components/card/card";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { ThemeContext } from "@/contexts/themProvider";
 import { darkTheme, lightTheme } from "@/constants/theme";
-import { useFonts } from "@/fonts/fonts";
-import { useStorageData } from "@/hook/useStorageData";
 import DataForm from "@/components/data-form/data-form";
 import Header from "@/components/header/header";
+import { getItem, setItem } from "@/apis";
+import { useFonts } from "@/hook/usefonts";
+
+interface DataItem {
+  id: string;
+  text: string;
+}
 
 export default function Index() {
-  useFonts();
-  const { data, handleSubmit, handleData, text, setText } = useStorageData();
+  const [data, setData] = useState<DataItem[]>([]);
+  const [text, setText] = useState("");
   const { theme } = useContext(ThemeContext);
+  const fontsLoaded = useFonts();
 
+  const handleData = async () => {
+    const storedData = await getItem("data");
+    if (storedData) {
+      setData(JSON.parse(storedData));
+    } else {
+      setData([]);
+    }
+  };
+
+  const handleSubmit = async () => {
+    const newData: DataItem = {
+      id: Date.now().toString(),
+      text: text,
+    };
+    const updatedData = [newData, ...data];
+    await setItem("data", JSON.stringify(updatedData));
+    await handleData();
+    setText("");
+  };
+
+  useEffect(() => {
+    handleData();
+  }, []);
+  if (!fontsLoaded) return null;
   return (
     <>
       <Header />
@@ -28,5 +58,5 @@ const Container = styled.SafeAreaView`
   flex: 1;
   background-color: ${({ theme }) => theme.bgColor};
   padding-top: 30px;
-  padding: 30px 16px 0;
+  padding: 30px 16px;
 `;

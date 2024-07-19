@@ -24,14 +24,18 @@ export const darkTheme = {
   logoFill: "#fff",
 };
 
-export const sortList = {
-  display: "flex",
-  flexDirection: "column",
-  gap: 10,
+export const themeType = (theme: string) => {
+  return theme === "light" ? lightTheme : darkTheme;
 };
-
-export const sortGrid = {};
 
 export const getCurrentTheme = (theme: string) => {
   return theme === "light" ? lightTheme : darkTheme;
+};
+
+export const sortList = {
+  width: "100%",
+};
+
+export const sortGrid = {
+  width: "50%",
 };

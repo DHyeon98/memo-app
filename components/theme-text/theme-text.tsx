@@ -1,4 +1,4 @@
-import { getCurrentTheme } from "@/constants/theme";
+import { themeType } from "@/constants/theme";
 import { ThemeContext } from "@/contexts/themProvider";
 import { PropsWithChildren, useContext } from "react";
 import styled from "styled-components/native";
@@ -14,9 +14,8 @@ export default function ThemeText({
   fontFamily,
 }: PropsWithChildren<ThemeTextType>) {
   const { theme } = useContext(ThemeContext);
-  const style = getCurrentTheme(theme);
   return (
-    <Text theme={style} fontSize={fontSize} fontFamily={fontFamily}>
+    <Text theme={themeType(theme)} fontSize={fontSize} fontFamily={fontFamily}>
       {children}
     </Text>
   );

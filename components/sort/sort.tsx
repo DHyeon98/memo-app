@@ -1,7 +1,7 @@
 import SortSvg from "../svg/sort";
 import { useContext, useState } from "react";
 import { ThemeContext } from "@/contexts/themProvider";
-import { darkTheme, lightTheme } from "@/constants/theme";
+import { darkTheme, lightTheme, themeType } from "@/constants/theme";
 import SortList from "./sort-list/sort-list";
 import { View } from "react-native";
 import styled from "styled-components/native";
@@ -13,14 +13,8 @@ export default function Sort() {
   return (
     <View>
       <FlexContainer onPress={openModal}>
-        <SortSvg
-          width={30}
-          height={30}
-          fill={theme === "light" ? lightTheme.sortFill : darkTheme.sortFill}
-        />
-        <ButtonText theme={theme === "light" ? lightTheme : darkTheme}>
-          보기
-        </ButtonText>
+        <SortSvg width={30} height={30} fill={themeType(theme)} />
+        <ButtonText theme={themeType(theme)}>보기</ButtonText>
       </FlexContainer>
       <ModalComponent isOpen={isOpen} closeModal={closeModal}>
         <SortList theme={theme} closeModal={closeModal} />
@@ -31,7 +25,7 @@ export default function Sort() {
 const FlexContainer = styled.Pressable`
   flex-direction: row;
   align-items: center;
-  gap: 5;
+  gap: 5px;
 `;
 const ButtonText = styled.Text`
   font-size: 16px;

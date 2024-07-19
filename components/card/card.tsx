@@ -15,11 +15,7 @@ export default function Card({ data, handleData }: CardType) {
   const { sort } = useContext(SortContext);
   useEffect(() => {
     setKey(sort);
-    if (sort === "GRID") {
-      setColumNum(2);
-    } else {
-      setColumNum(1);
-    }
+    setColumNum(sort === "GRID" ? 2 : 1);
   }, [sort]);
 
   return (
@@ -27,18 +23,14 @@ export default function Card({ data, handleData }: CardType) {
       key={key}
       data={data}
       numColumns={columNum}
-      renderItem={({ item, index }) => (
-        <CardItem
-          updateData={handleData}
-          text={item.text}
-          date={item.id}
-          index={index}
-        />
+      renderItem={({ item }) => (
+        <CardItem updateData={handleData} text={item.text} date={item.id} />
       )}
       keyExtractor={(item) => item.id.toString()}
       contentContainerStyle={{
         gap: 10,
       }}
+      columnWrapperStyle={columNum > 1 ? { gap: 10 } : undefined}
     />
   );
 }

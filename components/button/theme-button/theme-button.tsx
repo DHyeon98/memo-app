@@ -1,4 +1,4 @@
-import { darkTheme, lightTheme } from "@/constants/theme";
+import { darkTheme, lightTheme, themeType } from "@/constants/theme";
 import { ThemeContext } from "@/contexts/themProvider";
 import { useContext, useRef } from "react";
 import { Animated } from "react-native";
@@ -17,14 +17,8 @@ export default function ThemeButton() {
     }).start();
   };
   return (
-    <Button
-      theme={theme === "light" ? lightTheme : darkTheme}
-      onPress={handleTheme}
-    >
-      <ButtonText
-        theme={theme === "light" ? lightTheme : darkTheme}
-        style={{ left: animation }}
-      />
+    <Button theme={themeType(theme)} onPress={handleTheme}>
+      <ButtonText theme={themeType(theme)} style={{ left: animation }} />
     </Button>
   );
 }

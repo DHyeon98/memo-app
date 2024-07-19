@@ -10,7 +10,7 @@ export default function LogoSvg({ width, height, fill }: any) {
     >
       <G
         transform="translate(0.000000,1024.000000) scale(0.100000,-0.100000)"
-        fill={fill}
+        fill={fill.sortFill}
         stroke="none"
       >
         <Path

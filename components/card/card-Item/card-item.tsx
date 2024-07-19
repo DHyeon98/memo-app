@@ -8,81 +8,60 @@ import Textarea from "../../textarea/textarea";
 import { handleRemoveData } from "@/utils/remove-list";
 import { getItem, setItem } from "@/apis";
 import { ThemeContext } from "@/contexts/themProvider";
-import { darkTheme, lightTheme } from "@/constants/theme";
+import { darkTheme, lightTheme, themeType } from "@/constants/theme";
+import { SortContext } from "@/contexts/sortProvidedr";
+import { extractSortStyle } from "@/constants/sort-type";
+import { View } from "react-native";
+import { useModal } from "@/hook/useModal";
+import CardModal from "../card-modal/card-modal";
 
 interface CardItemType {
   text: string;
   date: string;
-  index: number;
   updateData: () => void;
 }
-interface DataType {
-  id: string;
-  text: string;
-}
 
-export default function CardItem({
-  text,
-  date,
-  updateData,
-  index,
-}: CardItemType) {
-  const oddMargin = index % 2 === 0;
-  const [modifyState, setModifyState] = useState(false);
-  const [modifyText, setModifyText] = useState(text);
+export default function CardItem({ text, date, updateData }: CardItemType) {
+  const { sort } = useContext(SortContext);
+  const sortStyle = extractSortStyle(sort);
   const { theme } = useContext(ThemeContext);
-  const themeType = theme === "light" ? lightTheme : darkTheme;
+  const { isOpen, ModalComponent, closeModal, openModal } = useModal();
 
-  const hanldeModifyCompletion = async () => {
-    const storedData = await getItem("data");
-    if (storedData) {
-      const parseData = JSON.parse(storedData);
-      const newData: DataType = {
-        id: Date.now().toString(),
-        text: modifyText,
-      };
-      const updatedData = [newData, ...parseData];
-      await setItem("data", JSON.stringify(updatedData));
-      setModifyText("");
-      handleRemoveData(date, updateData);
-      setModifyState(false);
-    }
-  };
   return (
     <CardContainer
-      theme={themeType}
+      theme={themeType(theme)}
+      onPress={openModal}
       style={{
-        marginRight: oddMargin ? 10 : 0,
+        ...sortStyle,
       }}
     >
-      <DateText theme={themeType}>{conversionTime(date)}</DateText>
-      {modifyState ? (
-        <Textarea onChangeText={setModifyText} value={modifyText} />
-      ) : (
-        <Text theme={themeType}>{text}</Text>
-      )}
-      <ButtonBox theme={themeType}>
-        {modifyState ? (
-          <CompletionButton handleCompletion={hanldeModifyCompletion} />
-        ) : (
-          <>
-            <RemoveButton date={date} updateData={updateData} />
-            <ModifyButton setModifyState={setModifyState} />
-          </>
-        )}
-      </ButtonBox>
+      <View>
+        <DateText theme={themeType(theme)}>{conversionTime(date)}</DateText>
+        <Text numberOfLines={3} theme={themeType(theme)}>
+          {text}
+        </Text>
+      </View>
+      <ModalComponent isOpen={isOpen} closeModal={closeModal}>
+        <CardModal
+          text={text}
+          date={date}
+          updateData={updateData}
+          theme={theme}
+        />
+      </ModalComponent>
     </CardContainer>
   );
 }
 
-const CardContainer = styled.View`
-  width: 100%;
+const CardContainer = styled.Pressable`
   padding: 10px;
   background-color: ${({ theme }) => theme.cardBg};
+  flex-shrink: 1;
+  justify-content: space-between;
 `;
 const DateText = styled.Text`
   font-family: "Pretendard-Bold";
-  margin-bottom: 4px;
+  margin-bottom: 5px;
   word-break: keep-all;
   width: 100%;
   color: ${({ theme }) => theme.textColor};
@@ -91,12 +70,4 @@ const Text = styled.Text`
   color: ${({ theme }) => theme.textColor};
   line-height: 20px;
   font-family: "Pretendard";
-`;
-const ButtonBox = styled.View`
-  flex-direction: row;
-  gap: 4px;
-  margin-top: 10px;
-  padding-top: 10px;
-  border-top-color: ${({ theme }) => theme.borderColor};
-  border-top-width: 1px;
 `;

@@ -8,21 +8,21 @@ export default function SortSvg({ width, height, fill }: any) {
         y="22.2222"
         width="72.2222"
         height="11.1111"
-        fill={fill}
+        fill={fill.sortFill}
       />
       <Rect
         x="13.8887"
         y="44.4443"
         width="72.2222"
         height="11.1111"
-        fill={fill}
+        fill={fill.sortFill}
       />
       <Rect
         x="13.8887"
         y="66.6667"
         width="72.2222"
         height="11.1111"
-        fill={fill}
+        fill={fill.sortFill}
       />
     </Svg>
   );

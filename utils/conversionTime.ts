@@ -5,5 +5,5 @@ export const conversionTime = (dateData: string) => {
   const day = date.getDate();
   const hours = date.getHours();
   const minutes = date.getMinutes();
-  return `${year}년 ${month}월 ${day}일 ${hours}시 ${minutes}분`;
+  return `${month}월 ${day}일 ${hours}시 ${minutes}분`;
 };
