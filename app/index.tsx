@@ -7,6 +7,8 @@ import DataForm from "@/components/data-form/data-form";
 import Header from "@/components/header/header";
 import { getItem, setItem } from "@/apis";
 import { useFonts } from "@/hook/usefonts";
+import { Text } from "react-native";
+import SearchButton from "@/components/search- button/search-button";
 
 interface DataItem {
   id: string;
@@ -49,6 +51,7 @@ export default function Index() {
       <Container theme={theme === "light" ? lightTheme : darkTheme}>
         <DataForm handleSubmit={handleSubmit} text={text} setText={setText} />
         <Card data={data} handleData={handleData} />
+        <SearchButton />
       </Container>
     </>
   );
