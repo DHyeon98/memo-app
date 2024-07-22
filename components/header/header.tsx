@@ -7,8 +7,8 @@ import { StyleSheet } from "react-native";
 import { darkTheme, lightTheme, themeType } from "@/constants/theme";
 import LogoSvg from "../svg/logo";
 import Sort from "../sort/sort";
-import { useRouter } from "expo-router";
 import { useRoute } from "@react-navigation/native";
+import Arrow from "../svg/arrow";
 
 export default function Header() {
   const { theme } = useContext(ThemeContext);
@@ -18,7 +18,11 @@ export default function Header() {
     <SafeAreaView
       style={[styles.basic, theme === "light" ? styles.light : styles.dark]}
     >
-      <Sort />
+      {name === "index" ? (
+        <Sort />
+      ) : (
+        <Arrow width={26} height={26} fill={themeType(theme)} />
+      )}
       <HeaderTextContainer>
         <HeaderText theme={themeType(theme)}>
           {name === "index" ? "메모장" : "검색하기"}
@@ -46,6 +50,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     width: "100%",
     justifyContent: "space-between",
+    alignItems: "center",
     paddingHorizontal: 16,
     paddingVertical: 20,
   },
