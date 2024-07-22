@@ -28,10 +28,6 @@ export const themeType = (theme: string) => {
   return theme === "light" ? lightTheme : darkTheme;
 };
 
-export const getCurrentTheme = (theme: string) => {
-  return theme === "light" ? lightTheme : darkTheme;
-};
-
 export const sortList = {
   width: "100%",
 };

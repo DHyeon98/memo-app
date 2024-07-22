@@ -57,7 +57,7 @@ export default function Index() {
   );
 }
 
-const Container = styled.SafeAreaView`
+export const Container = styled.SafeAreaView`
   flex: 1;
   background-color: ${({ theme }) => theme.bgColor};
   padding-top: 30px;

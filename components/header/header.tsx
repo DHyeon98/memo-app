@@ -7,9 +7,12 @@ import { StyleSheet } from "react-native";
 import { darkTheme, lightTheme, themeType } from "@/constants/theme";
 import LogoSvg from "../svg/logo";
 import Sort from "../sort/sort";
+import { useRouter } from "expo-router";
+import { useRoute } from "@react-navigation/native";
 
 export default function Header() {
   const { theme } = useContext(ThemeContext);
+  const { name } = useRoute();
 
   return (
     <SafeAreaView
@@ -17,7 +20,9 @@ export default function Header() {
     >
       <Sort />
       <HeaderTextContainer>
-        <HeaderText theme={themeType(theme)}>메모장</HeaderText>
+        <HeaderText theme={themeType(theme)}>
+          {name === "index" ? "메모장" : "검색하기"}
+        </HeaderText>
         <LogoSvg width={30} height={30} fill={themeType(theme)} />
       </HeaderTextContainer>
       <ThemeButton />

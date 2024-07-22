@@ -1,21 +1,23 @@
-import styled from "styled-components/native";
 import Search from "../svg/search";
+import { Link } from "expo-router";
+import { StyleSheet } from "react-native";
 
 export default function SearchButton() {
   return (
-    <Button>
+    <Link href={"/search"} style={styles.Link}>
       <Search width={26} height={26} fill={"#fff"} />
-    </Button>
+    </Link>
   );
 }
-const Button = styled.Pressable`
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  right: 16px;
-  bottom: 30px;
-  width: 50px;
-  height: 50px;
-  border-radius: 50px;
-  background-color: #47b976;
-`;
+
+const styles = StyleSheet.create({
+  Link: {
+    display: "flex",
+    position: "absolute",
+    right: 16,
+    bottom: 30,
+    padding: 10,
+    borderRadius: 50,
+    backgroundColor: "#47b976",
+  },
+});
