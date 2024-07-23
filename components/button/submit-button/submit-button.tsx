@@ -11,19 +11,15 @@ export default function SubmitButton({
 }: PropsWithChildren<SubmitButtonType>) {
   return (
     <Button onPress={handleSubmit}>
-      <ButtonText>{children}</ButtonText>
+      {children}
     </Button>
   );
 }
 
 const Button = styled.Pressable`
-  height: 40px;
+  height: 100%;
   width: 100%;
   background-color: #47b976;
   justify-content: center;
   align-items: center;
-`;
-const ButtonText = styled.Text`
-  color: #fff;
-  font-family: "Pretendard";
 `;

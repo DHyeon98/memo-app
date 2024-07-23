@@ -5,39 +5,24 @@ import { useContext } from "react";
 import { ThemeContext } from "@/contexts/themProvider";
 import { StyleSheet } from "react-native";
 import { darkTheme, lightTheme, themeType } from "@/constants/theme";
-import LogoSvg from "../svg/logo";
-import Sort from "../sort/sort";
-import { useRoute } from "@react-navigation/native";
-import Arrow from "../svg/arrow";
+import HeaderText from "./header-text/header-text";
+import HeaderLeft from "./header-left/header-left";
 
 export default function Header() {
   const { theme } = useContext(ThemeContext);
-  const { name } = useRoute();
-
   return (
     <SafeAreaView
       style={[styles.basic, theme === "light" ? styles.light : styles.dark]}
     >
-      {name === "index" ? (
-        <Sort />
-      ) : (
-        <Arrow width={26} height={26} fill={themeType(theme)} />
-      )}
+      <HeaderLeft theme={theme}/>
       <HeaderTextContainer>
-        <HeaderText theme={themeType(theme)}>
-          {name === "index" ? "메모장" : "검색하기"}
-        </HeaderText>
-        <LogoSvg width={30} height={30} fill={themeType(theme)} />
+        <HeaderText theme={theme}/>
       </HeaderTextContainer>
       <ThemeButton />
     </SafeAreaView>
   );
 }
-const HeaderText = styled.Text`
-  font-size: 20px;
-  font-family: "Pretendard-Bold";
-  color: ${({ theme }) => theme.textColor};
-`;
+
 const HeaderTextContainer = styled.View`
   display: flex;
   flex-direction: row;

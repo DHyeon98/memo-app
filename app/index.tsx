@@ -4,11 +4,10 @@ import { useContext, useEffect, useState } from "react";
 import { ThemeContext } from "@/contexts/themProvider";
 import { darkTheme, lightTheme } from "@/constants/theme";
 import DataForm from "@/components/data-form/data-form";
-import Header from "@/components/header/header";
 import { getItem, setItem } from "@/apis";
 import { useFonts } from "@/hook/usefonts";
-import { Text } from "react-native";
 import SearchButton from "@/components/search- button/search-button";
+import { useNavigationState } from "@react-navigation/native";
 
 interface DataItem {
   id: string;
@@ -19,8 +18,8 @@ export default function Index() {
   const [data, setData] = useState<DataItem[]>([]);
   const [text, setText] = useState("");
   const { theme } = useContext(ThemeContext);
-  const fontsLoaded = useFonts();
-
+  const fontsLoaded = useFonts(); 
+  const route = useNavigationState(state => state.routes);
   const handleData = async () => {
     const storedData = await getItem("data");
     if (storedData) {
@@ -43,11 +42,10 @@ export default function Index() {
 
   useEffect(() => {
     handleData();
-  }, []);
+  }, [route]);
   if (!fontsLoaded) return null;
   return (
     <>
-      <Header />
       <Container theme={theme === "light" ? lightTheme : darkTheme}>
         <DataForm handleSubmit={handleSubmit} text={text} setText={setText} />
         <Card data={data} handleData={handleData} />

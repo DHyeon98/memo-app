@@ -13,7 +13,11 @@ export default function DataForm({ handleSubmit, text, setText }: FormProps) {
   return (
     <FormContainer>
       <Textarea value={text} onChangeText={setText} />
-      <SubmitButton handleSubmit={handleSubmit}>추가</SubmitButton>
+      <ButtonBox>
+        <SubmitButton handleSubmit={handleSubmit}>
+          <ButtonText>추가</ButtonText>
+        </SubmitButton>
+        </ButtonBox>
     </FormContainer>
   );
 }
@@ -21,4 +25,11 @@ export default function DataForm({ handleSubmit, text, setText }: FormProps) {
 const FormContainer = styled.View`
   gap: 10px;
   margin-bottom: 10px;
+`;
+const ButtonBox = styled.View`
+height: 40px;
+`
+const ButtonText = styled.Text`
+  color: #fff;
+  font-family: "Pretendard";
 `;
