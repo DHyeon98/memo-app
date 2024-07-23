@@ -3,7 +3,7 @@ import ThemeButton from "../button/theme-button/theme-button";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useContext } from "react";
 import { ThemeContext } from "@/contexts/themProvider";
-import { StyleSheet } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { darkTheme, lightTheme, themeType } from "@/constants/theme";
 import HeaderText from "./header-text/header-text";
 import HeaderLeft from "./header-left/header-left";
@@ -15,19 +15,20 @@ export default function Header() {
       style={[styles.basic, theme === "light" ? styles.light : styles.dark]}
     >
       <HeaderLeft theme={theme}/>
-      <HeaderTextContainer>
+      <View style={styles.textContainer}>
         <HeaderText theme={theme}/>
-      </HeaderTextContainer>
+      </View>
       <ThemeButton />
     </SafeAreaView>
   );
 }
 
 const HeaderTextContainer = styled.View`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
+  flex: 1;
+    justify-content: center;
+    align-items: center;
 `;
+
 const styles = StyleSheet.create({
   basic: {
     zIndex: 10,
@@ -45,4 +46,13 @@ const styles = StyleSheet.create({
   dark: {
     backgroundColor: darkTheme.headerBg,
   },
+  textContainer: {
+    zIndex: -1,
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    bottom: 23.5,
+    justifyContent: 'center',
+    alignItems: 'center',
+  }
 });

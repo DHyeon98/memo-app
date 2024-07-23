@@ -15,6 +15,7 @@ export default function Search() {
   const { theme } = useContext(ThemeContext);
   const [data, setData] = useState<DataItem[]>([]);
   const [text, setText] = useState('');
+
   const handleData = async () => {
     const storedData = await getItem("data");
     if (storedData) {
@@ -40,3 +41,7 @@ const Container = styled.SafeAreaView`
   padding-top: 30px;
   padding: 30px 16px;
 `;
+const Button = styled.Pressable`
+  width: 200px; height: 100px;
+  background-color: red;
+`

@@ -1,19 +1,15 @@
 import { conversionTime } from "@/utils/conversionTime";
 import styled from "styled-components/native";
-import RemoveButton from "../../button/card-button/remove-button/remove-button";
-import ModifyButton from "../../button/card-button/modify-button/modify-button";
-import { useContext, useState } from "react";
-import CompletionButton from "../../button/completion-button/completion-button";
-import Textarea from "../../textarea/textarea";
-import { handleRemoveData } from "@/utils/remove-list";
-import { getItem, setItem } from "@/apis";
+import { useContext } from "react";
 import { ThemeContext } from "@/contexts/themProvider";
 import { darkTheme, lightTheme, themeType } from "@/constants/theme";
 import { SortContext } from "@/contexts/sortProvidedr";
 import { extractSortStyle } from "@/constants/sort-type";
-import { View } from "react-native";
+import { View, StyleSheet } from "react-native";
 import { useModal } from "@/hook/useModal";
 import CardModal from "../card-modal/card-modal";
+import { Link } from "expo-router";
+
 
 interface CardItemType {
   text: string;
@@ -26,14 +22,12 @@ export default function CardItem({ text, date, updateData }: CardItemType) {
   const sortStyle = extractSortStyle(sort);
   const { theme } = useContext(ThemeContext);
   const { isOpen, ModalComponent, closeModal, openModal } = useModal();
+  const stylesCondition = [styles.Link, theme === 'light' ? styles.light : styles.dark, sortStyle];
 
   return (
-    <CardContainer
-      theme={themeType(theme)}
-      onPress={openModal}
-      style={{
-        ...sortStyle,
-      }}
+    <Link
+      href={`details/${date}`}
+      style={stylesCondition}
     >
       <View>
         <DateText theme={themeType(theme)}>{conversionTime(date)}</DateText>
@@ -49,7 +43,7 @@ export default function CardItem({ text, date, updateData }: CardItemType) {
           theme={theme}
         />
       </ModalComponent>
-    </CardContainer>
+    </Link>
   );
 }
 
@@ -71,3 +65,16 @@ const Text = styled.Text`
   line-height: 20px;
   font-family: "Pretendard";
 `;
+const styles = StyleSheet.create({
+  Link: {
+    padding: 10,
+    flexShrink: 1,
+    justifyContent: 'space-between',
+  },
+  dark: {
+    backgroundColor: "#323741",
+  },
+  light: {
+    backgroundColor: '#fff',
+  }
+});
