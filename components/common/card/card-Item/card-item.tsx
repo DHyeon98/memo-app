@@ -2,7 +2,7 @@ import { conversionTime } from '@/utils/conversionTime';
 import styled from 'styled-components/native';
 import { useContext } from 'react';
 import { ThemeContext } from '@/contexts/themProvider';
-import { darkTheme, lightTheme, themeType } from '@/constants/theme';
+import { themeType } from '@/constants/theme';
 import { SortContext } from '@/contexts/sortProvidedr';
 import { extractSortStyle } from '@/constants/sort-type';
 import { View, StyleSheet } from 'react-native';
@@ -21,7 +21,7 @@ export default function CardItem({ text, date }: CardItemType) {
   const stylesCondition = [styles.Link, theme === 'light' ? styles.light : styles.dark, sortStyle];
 
   return (
-    <Link href={`details/${date}`} style={stylesCondition}>
+    <Link href={`detail/${date}`} style={stylesCondition}>
       <View>
         <DateText theme={themeType(theme)}>{conversionTime(date)}</DateText>
         <Text numberOfLines={3} theme={themeType(theme)}>

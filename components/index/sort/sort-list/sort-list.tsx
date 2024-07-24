@@ -7,7 +7,7 @@ import SortButton from '../sort-button/sort-button';
 import SortSvg from '@/components/svg/sort';
 import { darkTheme, lightTheme, themeType } from '@/constants/theme';
 import GridSvg from '@/components/svg/grid';
-import ThemeText from '@/components/theme-text/theme-text';
+import ThemeText from '@/components/common/theme-text/theme-text';
 
 interface SortListType extends ThemePropType {
   closeModal: () => void;

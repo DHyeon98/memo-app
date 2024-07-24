@@ -1,5 +1,5 @@
 import Textarea from '../textarea/textarea';
-import SubmitButton from '../button/submit-button/submit-button';
+import SubmitButton from '../../common/button/submit-button/submit-button';
 import styled from 'styled-components/native';
 import { Dispatch } from 'react';
 
@@ -12,7 +12,7 @@ interface FormProps {
 export default function DataForm({ handleSubmit, text, setText }: FormProps) {
   return (
     <FormContainer>
-      <Textarea value={text} onChangeText={setText} />
+      <Textarea type="basic" value={text} onChangeText={setText} />
       <ButtonBox>
         <SubmitButton handleSubmit={handleSubmit}>
           <ButtonText>추가</ButtonText>

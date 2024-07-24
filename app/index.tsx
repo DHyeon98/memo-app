@@ -1,13 +1,13 @@
-import styled from "styled-components/native";
-import Card from "@/components/card/card";
-import { useContext, useEffect, useState } from "react";
-import { ThemeContext } from "@/contexts/themProvider";
-import { darkTheme, lightTheme } from "@/constants/theme";
-import DataForm from "@/components/data-form/data-form";
-import { getItem, setItem } from "@/apis";
-import { useFonts } from "@/hook/usefonts";
-import SearchButton from "@/components/search- button/search-button";
-import { useNavigationState } from "@react-navigation/native";
+import styled from 'styled-components/native';
+import Card from '@/components/common/card/card';
+import { useContext, useEffect, useState } from 'react';
+import { ThemeContext } from '@/contexts/themProvider';
+import { darkTheme, lightTheme } from '@/constants/theme';
+import DataForm from '@/components/index/data-form/data-form';
+import { getItem, setItem } from '@/apis';
+import { useFonts } from '@/hook/usefonts';
+import SearchButton from '@/components/index/search- button/search-button';
+import { useNavigationState } from '@react-navigation/native';
 
 interface DataItem {
   id: string;
@@ -16,12 +16,13 @@ interface DataItem {
 
 export default function Index() {
   const [data, setData] = useState<DataItem[]>([]);
-  const [text, setText] = useState("");
+  const [text, setText] = useState('');
   const { theme } = useContext(ThemeContext);
-  const fontsLoaded = useFonts(); 
-  const route = useNavigationState(state => state.routes);
+  const fontsLoaded = useFonts();
+  const route = useNavigationState((state) => state.routes);
+
   const handleData = async () => {
-    const storedData = await getItem("data");
+    const storedData = await getItem('data');
     if (storedData) {
       setData(JSON.parse(storedData));
     } else {
@@ -35,18 +36,19 @@ export default function Index() {
       text: text,
     };
     const updatedData = [newData, ...data];
-    await setItem("data", JSON.stringify(updatedData));
+    await setItem('data', JSON.stringify(updatedData));
     await handleData();
-    setText("");
+    setText('');
   };
 
   useEffect(() => {
     handleData();
   }, [route]);
+
   if (!fontsLoaded) return null;
   return (
     <>
-      <Container theme={theme === "light" ? lightTheme : darkTheme}>
+      <Container theme={theme === 'light' ? lightTheme : darkTheme}>
         <DataForm handleSubmit={handleSubmit} text={text} setText={setText} />
         <Card data={data} handleData={handleData} />
         <SearchButton />

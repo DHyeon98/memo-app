@@ -1,10 +1,14 @@
-import { CardButtonType } from '../types';
 import CardButton from '../card-button';
 import { handleRemoveData } from '@/utils/remove-list';
 
-export default function RemoveButton({ date, updateData }: CardButtonType) {
+interface RemoveButtonType {
+  date: string;
+  handleFun: () => void;
+}
+
+export default function RemoveButton({ date, handleFun }: RemoveButtonType) {
   const onRemoveData = () => {
-    handleRemoveData(date, updateData);
+    handleRemoveData(date, handleFun);
   };
 
   return (

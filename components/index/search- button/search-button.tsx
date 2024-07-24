@@ -1,4 +1,4 @@
-import Search from '../svg/search';
+import Search from '../../svg/search';
 import { Link } from 'expo-router';
 import { StyleSheet } from 'react-native';
 

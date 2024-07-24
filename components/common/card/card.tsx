@@ -1,7 +1,7 @@
 import { SortContext } from '@/contexts/sortProvidedr';
 import { useContext, useEffect, useState } from 'react';
 import { FlatList } from 'react-native';
-import CardItem from './card-Item/card-item';
+import CardItem from '../card/card-Item/card-item';
 interface CardType {
   data: {
     id: string;

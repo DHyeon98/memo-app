@@ -1,5 +1,5 @@
 import { getItem } from '@/apis';
-import Card from '@/components/card/card';
+import Card from '@/components/common/card/card';
 import SearchBox from '@/components/search/search-box/search-box';
 import { themeType } from '@/constants/theme';
 import { ThemeContext } from '@/contexts/themProvider';
@@ -40,9 +40,4 @@ const Container = styled.SafeAreaView`
   background-color: ${({ theme }) => theme.bgColor};
   padding-top: 30px;
   padding: 30px 16px;
-`;
-const Button = styled.Pressable`
-  width: 200px;
-  height: 100px;
-  background-color: red;
 `;

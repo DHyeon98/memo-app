@@ -26,4 +26,5 @@ export const Text = styled.Text`
   color: #fff;
   font-size: 12px;
   font-family: 'Pretendard';
+  text-align: center;
 `;

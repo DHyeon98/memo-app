@@ -1,7 +1,7 @@
-import SortSvg from '../svg/sort';
+import SortSvg from '../../svg/sort';
 import { useContext, useState } from 'react';
 import { ThemeContext } from '@/contexts/themProvider';
-import { darkTheme, lightTheme, themeType } from '@/constants/theme';
+import { themeType } from '@/constants/theme';
 import SortList from './sort-list/sort-list';
 import { View } from 'react-native';
 import styled from 'styled-components/native';

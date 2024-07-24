@@ -1,4 +1,4 @@
-import ModalComponent from '@/components/modal/modal';
+import ModalComponent from '@/components/common/modal/modal';
 import { useState } from 'react';
 
 export const useModal = () => {

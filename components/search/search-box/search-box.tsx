@@ -1,7 +1,7 @@
 import { ThemeContext } from '@/contexts/themProvider';
 import { StyleSheet, TextInput } from 'react-native';
 import { useContext, Dispatch } from 'react';
-import SubmitButton from '@/components/button/submit-button/submit-button';
+import SubmitButton from '@/components/common/button/submit-button/submit-button';
 import styled from 'styled-components/native';
 import Search from '@/components/svg/search';
 import { darkTheme, lightTheme } from '@/constants/theme';
