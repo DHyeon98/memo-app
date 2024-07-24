@@ -1,6 +1,5 @@
 export const conversionTime = (dateData: string) => {
   const date = new Date(Number(dateData));
-  const year = date.getFullYear();
   const month = date.getMonth() + 1;
   const day = date.getDate();
   const hours = date.getHours();

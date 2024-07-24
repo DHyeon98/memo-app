@@ -1,42 +1,34 @@
-import styled from "styled-components/native";
-import ThemeButton from "../button/theme-button/theme-button";
-import { SafeAreaView } from "react-native-safe-area-context";
-import { useContext } from "react";
-import { ThemeContext } from "@/contexts/themProvider";
-import { StyleSheet, View } from "react-native";
-import { darkTheme, lightTheme, themeType } from "@/constants/theme";
-import HeaderText from "./header-text/header-text";
-import HeaderLeft from "./header-left/header-left";
+import styled from 'styled-components/native';
+import ThemeButton from '../button/theme-button/theme-button';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { useContext } from 'react';
+import { ThemeContext } from '@/contexts/themProvider';
+import { StyleSheet, View } from 'react-native';
+import { darkTheme, lightTheme, themeType } from '@/constants/theme';
+import HeaderText from './header-text/header-text';
+import HeaderLeft from './header-left/header-left';
 
 export default function Header() {
   const { theme } = useContext(ThemeContext);
   return (
-    <SafeAreaView
-      style={[styles.basic, theme === "light" ? styles.light : styles.dark]}
-    >
-      <HeaderLeft theme={theme}/>
+    <SafeAreaView style={[styles.basic, theme === 'light' ? styles.light : styles.dark]}>
+      <HeaderLeft theme={theme} />
       <View style={styles.textContainer}>
-        <HeaderText theme={theme}/>
+        <HeaderText theme={theme} />
       </View>
       <ThemeButton />
     </SafeAreaView>
   );
 }
 
-const HeaderTextContainer = styled.View`
-  flex: 1;
-    justify-content: center;
-    align-items: center;
-`;
-
 const styles = StyleSheet.create({
   basic: {
     zIndex: 10,
-    position: "relative",
-    flexDirection: "row",
-    width: "100%",
-    justifyContent: "space-between",
-    alignItems: "center",
+    position: 'relative',
+    flexDirection: 'row',
+    width: '100%',
+    justifyContent: 'space-between',
+    alignItems: 'center',
     paddingHorizontal: 16,
     paddingVertical: 20,
   },
@@ -54,5 +46,5 @@ const styles = StyleSheet.create({
     bottom: 23.5,
     justifyContent: 'center',
     alignItems: 'center',
-  }
+  },
 });

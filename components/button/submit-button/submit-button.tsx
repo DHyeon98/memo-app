@@ -1,19 +1,12 @@
-import { PropsWithChildren } from "react";
-import styled from "styled-components/native";
+import { PropsWithChildren } from 'react';
+import styled from 'styled-components/native';
 
 interface SubmitButtonType {
   handleSubmit: () => void;
 }
 
-export default function SubmitButton({
-  children,
-  handleSubmit,
-}: PropsWithChildren<SubmitButtonType>) {
-  return (
-    <Button onPress={handleSubmit}>
-      {children}
-    </Button>
-  );
+export default function SubmitButton({ children, handleSubmit }: PropsWithChildren<SubmitButtonType>) {
+  return <Button onPress={handleSubmit}>{children}</Button>;
 }
 
 const Button = styled.Pressable`

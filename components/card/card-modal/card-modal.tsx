@@ -1,14 +1,14 @@
-import { getItem, setItem } from "@/apis";
-import ModifyButton from "@/components/button/card-button/modify-button/modify-button";
-import RemoveButton from "@/components/button/card-button/remove-button/remove-button";
-import CompletionButton from "@/components/button/completion-button/completion-button";
-import Textarea from "@/components/textarea/textarea";
-import { darkTheme, lightTheme, themeType } from "@/constants/theme";
-import { conversionTime } from "@/utils/conversionTime";
-import { handleRemoveData } from "@/utils/remove-list";
-import { useState } from "react";
-import { ScrollView, View } from "react-native";
-import styled from "styled-components/native";
+import { getItem, setItem } from '@/apis';
+import ModifyButton from '@/components/button/card-button/modify-button/modify-button';
+import RemoveButton from '@/components/button/card-button/remove-button/remove-button';
+import CompletionButton from '@/components/button/completion-button/completion-button';
+import Textarea from '@/components/textarea/textarea';
+import { darkTheme, lightTheme, themeType } from '@/constants/theme';
+import { conversionTime } from '@/utils/conversionTime';
+import { handleRemoveData } from '@/utils/remove-list';
+import { useState } from 'react';
+import { ScrollView, View } from 'react-native';
+import styled from 'styled-components/native';
 
 interface DataType {
   id: string;
@@ -22,17 +22,12 @@ interface CardModalType {
   theme: string;
 }
 
-export default function CardModal({
-  text,
-  date,
-  updateData,
-  theme,
-}: CardModalType) {
+export default function CardModal({ text, date, updateData, theme }: CardModalType) {
   const [modifyState, setModifyState] = useState(false);
   const [modifyText, setModifyText] = useState(text);
 
   const hanldeModifyCompletion = async () => {
-    const storedData = await getItem("data");
+    const storedData = await getItem('data');
     if (storedData) {
       const parseData = JSON.parse(storedData);
       const newData: DataType = {
@@ -40,8 +35,8 @@ export default function CardModal({
         text: modifyText,
       };
       const updatedData = [newData, ...parseData];
-      await setItem("data", JSON.stringify(updatedData));
-      setModifyText("");
+      await setItem('data', JSON.stringify(updatedData));
+      setModifyText('');
       handleRemoveData(date, updateData);
       setModifyState(false);
     }
@@ -90,7 +85,7 @@ const ButtonBox = styled.View`
 `;
 
 const DateText = styled.Text`
-  font-family: "Pretendard-Bold";
+  font-family: 'Pretendard-Bold';
   margin-bottom: 5px;
   word-break: keep-all;
   width: 100%;
@@ -100,5 +95,5 @@ const DateText = styled.Text`
 const Text = styled.Text`
   color: ${({ theme }) => theme.textColor};
   line-height: 20px;
-  font-family: "Pretendard";
+  font-family: 'Pretendard';
 `;

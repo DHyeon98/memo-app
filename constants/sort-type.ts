@@ -1,4 +1,4 @@
-import { sortGrid, sortList } from "./theme";
+import { sortGrid, sortList } from './theme';
 
 const sortTypes: any = {
   LIST() {

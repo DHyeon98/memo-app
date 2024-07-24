@@ -1,5 +1,5 @@
-import { PropsWithChildren } from "react";
-import styled from "styled-components/native";
+import { PropsWithChildren } from 'react';
+import styled from 'styled-components/native';
 
 interface UtilButtonType {
   handleFun: () => void;
@@ -25,5 +25,5 @@ export const Button = styled.Pressable<StyledPropsType>`
 export const Text = styled.Text`
   color: #fff;
   font-size: 12px;
-  font-family: "Pretendard";
+  font-family: 'Pretendard';
 `;

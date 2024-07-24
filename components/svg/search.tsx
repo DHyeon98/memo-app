@@ -1,4 +1,4 @@
-import { Path, Svg } from "react-native-svg";
+import { Path, Svg } from 'react-native-svg';
 
 export default function Search({ width, height, fill }: any) {
   return (
@@ -10,13 +10,7 @@ export default function Search({ width, height, fill }: any) {
         strokeLinecap="round"
         strokeLinejoin="round"
       />
-      <Path
-        d="M17.5 17.5L13.875 13.875"
-        stroke={fill}
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
+      <Path d="M17.5 17.5L13.875 13.875" stroke={fill} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
     </Svg>
   );
 }

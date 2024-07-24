@@ -1,5 +1,5 @@
-import * as Font from "expo-font";
-import { useState, useEffect } from "react";
+import * as Font from 'expo-font';
+import { useState, useEffect } from 'react';
 
 export const useFonts = () => {
   const [fontsLoaded, setFontsLoaded] = useState(false);
@@ -7,8 +7,8 @@ export const useFonts = () => {
   useEffect(() => {
     const loadFonts = async () => {
       await Font.loadAsync({
-        Pretendard: require("../assets/fonts/Pretendard-Medium.ttf"),
-        "Pretendard-Bold": require("../assets/fonts/Pretendard-Bold.ttf"),
+        Pretendard: require('../assets/fonts/Pretendard-Medium.ttf'),
+        'Pretendard-Bold': require('../assets/fonts/Pretendard-Bold.ttf'),
       });
       setFontsLoaded(true);
     };

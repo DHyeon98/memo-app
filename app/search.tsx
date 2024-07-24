@@ -1,10 +1,10 @@
-import { getItem } from "@/apis";
-import Card from "@/components/card/card";
-import SearchBox from "@/components/search/search-box/search-box";
-import { themeType } from "@/constants/theme";
-import { ThemeContext } from "@/contexts/themProvider";
-import { useContext, useState } from "react";
-import styled from "styled-components/native";
+import { getItem } from '@/apis';
+import Card from '@/components/card/card';
+import SearchBox from '@/components/search/search-box/search-box';
+import { themeType } from '@/constants/theme';
+import { ThemeContext } from '@/contexts/themProvider';
+import { useContext, useState } from 'react';
+import styled from 'styled-components/native';
 
 interface DataItem {
   id: string;
@@ -17,10 +17,10 @@ export default function Search() {
   const [text, setText] = useState('');
 
   const handleData = async () => {
-    const storedData = await getItem("data");
+    const storedData = await getItem('data');
     if (storedData) {
       const allData = JSON.parse(storedData);
-      const filterData = allData.filter((item:DataItem) => item.text.includes(text));
+      const filterData = allData.filter((item: DataItem) => item.text.includes(text));
       setData(filterData);
       setText('');
     } else {
@@ -29,10 +29,10 @@ export default function Search() {
   };
 
   return (
-      <Container theme={themeType(theme)}>
-        <SearchBox text={text} setText={setText} handleData={handleData}/>
-        <Card data={data} handleData={handleData}/>
-      </Container>
+    <Container theme={themeType(theme)}>
+      <SearchBox text={text} setText={setText} handleData={handleData} />
+      <Card data={data} handleData={handleData} />
+    </Container>
   );
 }
 const Container = styled.SafeAreaView`
@@ -42,6 +42,7 @@ const Container = styled.SafeAreaView`
   padding: 30px 16px;
 `;
 const Button = styled.Pressable`
-  width: 200px; height: 100px;
+  width: 200px;
+  height: 100px;
   background-color: red;
-`
+`;

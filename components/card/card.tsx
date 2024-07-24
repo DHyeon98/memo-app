@@ -1,7 +1,7 @@
-import { SortContext } from "@/contexts/sortProvidedr";
-import { useContext, useEffect, useState } from "react";
-import { FlatList } from "react-native";
-import CardItem from "./card-Item/card-item";
+import { SortContext } from '@/contexts/sortProvidedr';
+import { useContext, useEffect, useState } from 'react';
+import { FlatList } from 'react-native';
+import CardItem from './card-Item/card-item';
 interface CardType {
   data: {
     id: string;
@@ -11,11 +11,11 @@ interface CardType {
 }
 export default function Card({ data, handleData }: CardType) {
   const [columNum, setColumNum] = useState(1);
-  const [key, setKey] = useState("");
+  const [key, setKey] = useState('');
   const { sort } = useContext(SortContext);
   useEffect(() => {
     setKey(sort);
-    setColumNum(sort === "GRID" ? 2 : 1);
+    setColumNum(sort === 'GRID' ? 2 : 1);
   }, [sort]);
 
   return (
@@ -23,9 +23,7 @@ export default function Card({ data, handleData }: CardType) {
       key={key}
       data={data}
       numColumns={columNum}
-      renderItem={({ item }) => (
-        <CardItem updateData={handleData} text={item.text} date={item.id} />
-      )}
+      renderItem={({ item }) => <CardItem updateData={handleData} text={item.text} date={item.id} />}
       keyExtractor={(item) => item.id.toString()}
       contentContainerStyle={{
         gap: 10,

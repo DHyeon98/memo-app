@@ -1,16 +1,12 @@
-import { PropsWithChildren } from "react";
-import styled from "styled-components/native";
+import { PropsWithChildren } from 'react';
+import styled from 'styled-components/native';
 
 interface SortButtonType {
   handleSort: () => void;
   closeModal: () => void;
 }
 
-export default function SortButton({
-  children,
-  handleSort,
-  closeModal,
-}: PropsWithChildren<SortButtonType>) {
+export default function SortButton({ children, handleSort, closeModal }: PropsWithChildren<SortButtonType>) {
   const handleClick = () => {
     handleSort();
     closeModal();

@@ -1,5 +1,5 @@
-import CardButton from "../card-button";
-import { Dispatch } from "react";
+import CardButton from '../card-button';
+import { Dispatch } from 'react';
 
 interface ModifyButtonType {
   setModifyState: Dispatch<React.SetStateAction<boolean>>;

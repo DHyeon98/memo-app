@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import { getItem, setItem } from "@/apis";
+import { useState, useEffect } from 'react';
+import { getItem, setItem } from '@/apis';
 
 interface DataItem {
   id: string;
@@ -8,10 +8,10 @@ interface DataItem {
 
 export const useStorageData = () => {
   const [data, setData] = useState<DataItem[]>([]);
-  const [text, setText] = useState("");
+  const [text, setText] = useState('');
 
   const handleData = async () => {
-    const storedData = await getItem("data");
+    const storedData = await getItem('data');
     if (storedData) {
       setData(JSON.parse(storedData));
     } else {
@@ -25,9 +25,9 @@ export const useStorageData = () => {
       text: text,
     };
     const updatedData = [newData, ...data];
-    await setItem("data", JSON.stringify(updatedData));
+    await setItem('data', JSON.stringify(updatedData));
     await handleData();
-    setText("");
+    setText('');
   };
 
   useEffect(() => {

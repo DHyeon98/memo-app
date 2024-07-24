@@ -1,5 +1,5 @@
-import { Modal, View } from "react-native";
-import styled from "styled-components/native";
+import { Modal, View } from 'react-native';
+import styled from 'styled-components/native';
 
 interface ModalProps {
   children: React.ReactNode;
@@ -7,11 +7,7 @@ interface ModalProps {
   closeModal: () => void;
 }
 
-export default function ModalComponent({
-  children,
-  isOpen,
-  closeModal,
-}: ModalProps) {
+export default function ModalComponent({ children, isOpen, closeModal }: ModalProps) {
   return (
     <Modal transparent visible={isOpen}>
       <ModalView>

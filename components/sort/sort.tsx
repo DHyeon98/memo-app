@@ -1,11 +1,11 @@
-import SortSvg from "../svg/sort";
-import { useContext, useState } from "react";
-import { ThemeContext } from "@/contexts/themProvider";
-import { darkTheme, lightTheme, themeType } from "@/constants/theme";
-import SortList from "./sort-list/sort-list";
-import { View } from "react-native";
-import styled from "styled-components/native";
-import { useModal } from "@/hook/useModal";
+import SortSvg from '../svg/sort';
+import { useContext, useState } from 'react';
+import { ThemeContext } from '@/contexts/themProvider';
+import { darkTheme, lightTheme, themeType } from '@/constants/theme';
+import SortList from './sort-list/sort-list';
+import { View } from 'react-native';
+import styled from 'styled-components/native';
+import { useModal } from '@/hook/useModal';
 
 export default function Sort() {
   const { theme } = useContext(ThemeContext);
@@ -29,6 +29,6 @@ const FlexContainer = styled.Pressable`
 `;
 const ButtonText = styled.Text`
   font-size: 16px;
-  font-family: "Pretendard-Bold";
+  font-family: 'Pretendard-Bold';
   color: ${({ theme }) => theme.textColor};
 `;
