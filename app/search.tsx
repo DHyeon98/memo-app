@@ -3,8 +3,9 @@ import Card from '@/components/common/card/card';
 import SearchBox from '@/components/search/search-box/search-box';
 import { themeType } from '@/constants/theme';
 import { ThemeContext } from '@/contexts/themProvider';
-import { useContext, useState } from 'react';
+import { useContext, useState, useEffect, useRef } from 'react';
 import styled from 'styled-components/native';
+import useSWR from 'swr';
 
 interface DataItem {
   id: string;
@@ -13,25 +14,33 @@ interface DataItem {
 
 export default function Search() {
   const { theme } = useContext(ThemeContext);
-  const [data, setData] = useState<DataItem[]>([]);
+  const { data } = useSWR('data');
+  const [searchData, setSearchData] = useState<DataItem[]>([]);
   const [text, setText] = useState('');
+  const isFirstRender = useRef(true);
 
   const handleData = async () => {
-    const storedData = await getItem('data');
-    if (storedData) {
-      const allData = JSON.parse(storedData);
-      const filterData = allData.filter((item: DataItem) => item.text.includes(text));
-      setData(filterData);
+    if (data) {
+      const filterData = data.filter((item: DataItem) => item.text.includes(text));
+      setSearchData(filterData);
       setText('');
     } else {
-      setData([]);
+      setSearchData([]);
     }
   };
+
+  useEffect(() => {
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+    } else {
+      handleData();
+    }
+  }, [data]);
 
   return (
     <Container theme={themeType(theme)}>
       <SearchBox text={text} setText={setText} handleData={handleData} />
-      <Card data={data} handleData={handleData} />
+      <Card data={searchData} />
     </Container>
   );
 }

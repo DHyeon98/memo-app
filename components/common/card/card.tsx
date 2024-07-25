@@ -2,12 +2,13 @@ import { SortContext } from '@/contexts/sortProvidedr';
 import { useContext, useEffect, useState } from 'react';
 import { FlatList } from 'react-native';
 import CardItem from '../card/card-Item/card-item';
-import useSWR from 'swr';
 interface CardType {
-  handleData: () => void;
+  data: {
+    id: string;
+    text: string;
+  }[];
 }
-export default function Card() {
-  const { data } = useSWR('data');
+export default function Card({ data }: CardType) {
   const [columNum, setColumNum] = useState(1);
   const [key, setKey] = useState('');
   const { sort } = useContext(SortContext);

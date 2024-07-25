@@ -9,6 +9,7 @@ import { RouteProp, useRoute } from '@react-navigation/native';
 import { useRouter } from 'expo-router';
 import { useContext, useState, useEffect } from 'react';
 import styled from 'styled-components/native';
+import useSWR from 'swr';
 
 type RouteParams = {
   params: {
@@ -22,7 +23,8 @@ interface DataItem {
 }
 
 export default function Details() {
-  const [data, setData] = useState<DataItem>();
+  const [detailsData, setDetailsData] = useState<DataItem>();
+  const { data, mutate } = useSWR('data');
   const [text, setText] = useState('');
   const { theme } = useContext(ThemeContext);
   const router = useRouter();
@@ -30,45 +32,42 @@ export default function Details() {
   const id = params ? params.id : 'id 값이 없습니다.';
 
   const handleData = async () => {
-    const storedData = await getItem('data');
-    if (storedData) {
-      const parseData = JSON.parse(storedData);
-      const filterData = parseData.filter((data: DataItem) => data.id === id);
-      setData(filterData[0]);
+    if (data) {
+      const filterData = data.filter((data: DataItem) => data.id === id);
+      setDetailsData(filterData[0]);
       setText(filterData[0].text);
     }
   };
 
   const handleModifyData = async () => {
-    const storedData = await getItem('data');
-    if (storedData) {
-      const parseData = JSON.parse(storedData).filter((data: DataItem) => data.id !== id);
-      const newData: DataItem = {
-        id: Date.now().toString(),
-        text: text,
-      };
-      const updatedData = [newData, ...parseData];
-      await setItem('data', JSON.stringify(updatedData));
-    }
+    const parseData = data.filter((data: DataItem) => data.id !== id);
+    const newData: DataItem = {
+      id: Date.now().toString(),
+      text: text,
+    };
+    const updatedData = [newData, ...parseData];
+    await setItem('data', JSON.stringify(updatedData));
+    mutate();
   };
 
   const handleGoIndex = () => {
-    router.navigate('/');
+    mutate();
+    router.back();
   };
 
   useEffect(() => {
     handleData();
   }, []);
 
-  if (!data) return null;
+  if (!detailsData) return null;
   return (
     <Container theme={themeType(theme)}>
       <DateTextContainer>
-        <ThemeText fontFamily="Pretendard-Bold">{conversionTime(data.id)}</ThemeText>
+        <ThemeText fontFamily="Pretendard-Bold">{conversionTime(detailsData.id)}</ThemeText>
       </DateTextContainer>
-      <Textarea onBlur={handleModifyData} type="details" onChangeText={setText} defaultValue={data.text} />
+      <Textarea onBlur={handleModifyData} type="details" onChangeText={setText} defaultValue={detailsData.text} />
       <ButtonContainer>
-        <RemoveButton date={data.id} handleFun={handleGoIndex} />
+        <RemoveButton date={detailsData.id} handleFun={handleGoIndex} />
       </ButtonContainer>
     </Container>
   );
