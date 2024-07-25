@@ -11,7 +11,6 @@ import { Link } from 'expo-router';
 interface CardItemType {
   text: string;
   date: string;
-  updateData: () => void;
 }
 
 export default function CardItem({ text, date }: CardItemType) {

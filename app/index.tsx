@@ -1,59 +1,32 @@
 import styled from 'styled-components/native';
 import Card from '@/components/common/card/card';
-import { useContext, useEffect, useState } from 'react';
+import { useContext } from 'react';
 import { ThemeContext } from '@/contexts/themProvider';
 import { darkTheme, lightTheme } from '@/constants/theme';
 import DataForm from '@/components/index/data-form/data-form';
-import { getItem, setItem } from '@/apis';
+import { getItem } from '@/apis';
 import { useFonts } from '@/hook/usefonts';
+import { SWRConfig } from 'swr';
 import SearchButton from '@/components/index/search- button/search-button';
-import { useNavigationState } from '@react-navigation/native';
 
-interface DataItem {
-  id: string;
-  text: string;
-}
+const fetcher = async () => {
+  const data = await getItem('data');
+  return data ? JSON.parse(data) : null;
+};
 
 export default function Index() {
-  const [data, setData] = useState<DataItem[]>([]);
-  const [text, setText] = useState('');
   const { theme } = useContext(ThemeContext);
   const fontsLoaded = useFonts();
-  const route = useNavigationState((state) => state.routes);
-
-  const handleData = async () => {
-    const storedData = await getItem('data');
-    if (storedData) {
-      setData(JSON.parse(storedData));
-    } else {
-      setData([]);
-    }
-  };
-
-  const handleSubmit = async () => {
-    const newData: DataItem = {
-      id: Date.now().toString(),
-      text: text,
-    };
-    const updatedData = [newData, ...data];
-    await setItem('data', JSON.stringify(updatedData));
-    await handleData();
-    setText('');
-  };
-
-  useEffect(() => {
-    handleData();
-  }, [route]);
 
   if (!fontsLoaded) return null;
   return (
-    <>
+    <SWRConfig value={{ fetcher }}>
       <Container theme={theme === 'light' ? lightTheme : darkTheme}>
-        <DataForm handleSubmit={handleSubmit} text={text} setText={setText} />
-        <Card data={data} handleData={handleData} />
+        <DataForm />
+        <Card />
         <SearchButton />
       </Container>
-    </>
+    </SWRConfig>
   );
 }
 
