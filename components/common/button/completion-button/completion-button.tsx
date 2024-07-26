@@ -1,4 +1,4 @@
-import CardButton from '../card-button/card-button';
+import CommonButton from '../common-button';
 
 interface CompletionButtonType {
   handleCompletion: () => Promise<void>;
@@ -6,8 +6,8 @@ interface CompletionButtonType {
 
 export default function CompletionButton({ handleCompletion }: CompletionButtonType) {
   return (
-    <CardButton handleFun={handleCompletion} backgroundColor="rgb(71, 185, 118)">
+    <CommonButton handleFun={handleCompletion} backgroundColor="rgb(71, 185, 118)">
       수정완료
-    </CardButton>
+    </CommonButton>
   );
 }

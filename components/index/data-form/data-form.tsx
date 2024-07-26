@@ -1,9 +1,11 @@
 import Textarea from '../textarea/textarea';
 import SubmitButton from '../../common/button/submit-button/submit-button';
 import styled from 'styled-components/native';
-import { Dispatch, useState } from 'react';
+import { useState } from 'react';
 import { setItem } from '@/apis';
 import useSWR from 'swr';
+import { useModal } from '@/hook/useModal';
+import WarningModal from '@/components/common/modal/warning-modal/warning-modal';
 
 interface DataItem {
   id: string;
@@ -13,12 +15,14 @@ interface DataItem {
 export default function DataForm() {
   const { data, mutate } = useSWR('data');
   const [text, setText] = useState('');
+  const { isOpen, openModal, closeModal, ModalComponent } = useModal();
 
   const handleSubmit = async () => {
     const newData: DataItem = {
       id: Date.now().toString(),
       text: text,
     };
+    if (!text) return openModal();
     if (data) {
       const updatedData = [newData, ...data];
       await setItem('data', JSON.stringify(updatedData));
@@ -40,6 +44,9 @@ export default function DataForm() {
           <ButtonText>추가</ButtonText>
         </SubmitButton>
       </ButtonBox>
+      <ModalComponent closeModal={closeModal} isOpen={isOpen}>
+        <WarningModal multiple={false} closeModal={closeModal} />
+      </ModalComponent>
     </FormContainer>
   );
 }

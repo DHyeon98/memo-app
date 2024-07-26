@@ -1,8 +1,10 @@
 import { getItem } from '@/apis';
 import Card from '@/components/common/card/card';
+import WarningModal from '@/components/common/modal/warning-modal/warning-modal';
 import SearchBox from '@/components/search/search-box/search-box';
 import { themeType } from '@/constants/theme';
 import { ThemeContext } from '@/contexts/themProvider';
+import { useModal } from '@/hook/useModal';
 import { useContext, useState, useEffect, useRef } from 'react';
 import styled from 'styled-components/native';
 import useSWR from 'swr';
@@ -18,8 +20,10 @@ export default function Search() {
   const [searchData, setSearchData] = useState<DataItem[]>([]);
   const [text, setText] = useState('');
   const isFirstRender = useRef(true);
+  const { ModalComponent, isOpen, openModal, closeModal } = useModal();
 
   const handleData = async () => {
+    if (!text) return openModal();
     if (data) {
       const filterData = data.filter((item: DataItem) => item.text.includes(text));
       setSearchData(filterData);
@@ -40,6 +44,9 @@ export default function Search() {
     <Container theme={themeType(theme)}>
       <SearchBox text={text} setText={setText} handleData={handleData} />
       <Card data={searchData} />
+      <ModalComponent isOpen={isOpen} closeModal={closeModal}>
+        <WarningModal multiple={false} closeModal={closeModal} />
+      </ModalComponent>
     </Container>
   );
 }

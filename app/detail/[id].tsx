@@ -1,6 +1,8 @@
 import { getItem, setItem } from '@/apis';
 import RemoveButton from '@/components/common/button/card-button/remove-button/remove-button';
 import ThemeText from '@/components/common/theme-text/theme-text';
+import DetailsButton from '@/components/details/details-button/details-button';
+import DetailsDate from '@/components/details/details-date/details-date';
 import Textarea from '@/components/index/textarea/textarea';
 import { themeType } from '@/constants/theme';
 import { ThemeContext } from '@/contexts/themProvider';
@@ -27,7 +29,6 @@ export default function Details() {
   const { data, mutate } = useSWR('data');
   const [text, setText] = useState('');
   const { theme } = useContext(ThemeContext);
-  const router = useRouter();
   const { params } = useRoute<RouteProp<RouteParams, 'params'>>();
   const id = params ? params.id : 'id 값이 없습니다.';
 
@@ -40,6 +41,7 @@ export default function Details() {
   };
 
   const handleModifyData = async () => {
+    if (!text) return;
     const parseData = data.filter((data: DataItem) => data.id !== id);
     const newData: DataItem = {
       id: Date.now().toString(),
@@ -50,11 +52,6 @@ export default function Details() {
     mutate();
   };
 
-  const handleGoIndex = () => {
-    mutate();
-    router.back();
-  };
-
   useEffect(() => {
     handleData();
   }, []);
@@ -62,13 +59,9 @@ export default function Details() {
   if (!detailsData) return null;
   return (
     <Container theme={themeType(theme)}>
-      <DateTextContainer>
-        <ThemeText fontFamily="Pretendard-Bold">{conversionTime(detailsData.id)}</ThemeText>
-      </DateTextContainer>
+      <DetailsDate detailsId={id} />
       <Textarea onBlur={handleModifyData} type="details" onChangeText={setText} defaultValue={detailsData.text} />
-      <ButtonContainer>
-        <RemoveButton date={detailsData.id} handleFun={handleGoIndex} />
-      </ButtonContainer>
+      <DetailsButton detailsId={id} />
     </Container>
   );
 }
@@ -78,10 +71,4 @@ const Container = styled.SafeAreaView`
   background-color: ${({ theme }) => theme.bgColor};
   padding-top: 30px;
   padding: 30px 16px;
-`;
-const DateTextContainer = styled.View`
-  margin-bottom: 10px;
-`;
-const ButtonContainer = styled.View`
-  margin-top: 10px;
 `;

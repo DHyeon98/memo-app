@@ -1,4 +1,4 @@
-import CardButton from '../card-button';
+import CommonButton from '../../common-button';
 import { handleRemoveData } from '@/utils/remove-list';
 
 interface RemoveButtonType {
@@ -12,8 +12,8 @@ export default function RemoveButton({ date, handleFun }: RemoveButtonType) {
   };
 
   return (
-    <CardButton handleFun={onRemoveData} backgroundColor="rgb(254 97 97);">
+    <CommonButton handleFun={onRemoveData} backgroundColor="rgb(254 97 97);">
       삭제
-    </CardButton>
+    </CommonButton>
   );
 }
