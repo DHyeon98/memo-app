@@ -19,10 +19,17 @@ export default function DataForm() {
       id: Date.now().toString(),
       text: text,
     };
-    const updatedData = [newData, ...data];
-    await setItem('data', JSON.stringify(updatedData));
-    setText('');
-    mutate();
+    if (data) {
+      const updatedData = [newData, ...data];
+      await setItem('data', JSON.stringify(updatedData));
+      setText('');
+      mutate();
+    } else {
+      const updatedData = [newData];
+      await setItem('data', JSON.stringify(updatedData));
+      setText('');
+      mutate();
+    }
   };
 
   return (

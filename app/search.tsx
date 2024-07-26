@@ -23,7 +23,6 @@ export default function Search() {
     if (data) {
       const filterData = data.filter((item: DataItem) => item.text.includes(text));
       setSearchData(filterData);
-      setText('');
     } else {
       setSearchData([]);
     }
