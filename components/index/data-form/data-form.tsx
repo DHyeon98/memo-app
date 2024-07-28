@@ -7,18 +7,13 @@ import useSWR from 'swr';
 import { useModal } from '@/hook/useModal';
 import WarningModal from '@/components/common/modal/warning-modal/warning-modal';
 
-interface DataItem {
-  id: string;
-  text: string;
-}
-
 export default function DataForm() {
   const { data, mutate } = useSWR('data');
   const [text, setText] = useState('');
   const { isOpen, openModal, closeModal, ModalComponent } = useModal();
 
   const handleSubmit = async () => {
-    const newData: DataItem = {
+    const newData = {
       id: Date.now().toString(),
       text: text,
     };
@@ -45,7 +40,12 @@ export default function DataForm() {
         </SubmitButton>
       </ButtonBox>
       <ModalComponent closeModal={closeModal} isOpen={isOpen}>
-        <WarningModal multiple={false} closeModal={closeModal} />
+        <WarningModal>
+          <WarningModal.Text>내용을 입력해주세요.</WarningModal.Text>
+          <WarningModal.Button buttonColor="#47b976" handleFun={closeModal}>
+            확인
+          </WarningModal.Button>
+        </WarningModal>
       </ModalComponent>
     </FormContainer>
   );

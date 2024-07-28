@@ -1,6 +1,9 @@
+import { setItem } from '@/apis';
 import RemoveButton from '@/components/common/button/card-button/remove-button/remove-button';
+import CommonButton from '@/components/common/button/common-button';
 import WarningModal from '@/components/common/modal/warning-modal/warning-modal';
 import { useModal } from '@/hook/useModal';
+import { DataType } from '@/types/data';
 import { useRouter } from 'expo-router';
 import styled from 'styled-components/native';
 import useSWR from 'swr';
@@ -10,21 +13,31 @@ interface DetailsButtonType {
 }
 
 export default function DetailsButton({ detailsId }: DetailsButtonType) {
-  const { mutate } = useSWR('data');
+  const { mutate, data } = useSWR('data');
   const router = useRouter();
-  const { isOpen, closeModal, ModalComponent } = useModal();
+  const { isOpen, closeModal, ModalComponent, openModal } = useModal();
 
-  const handleGoIndex = () => {
-    mutate();
-    router.back();
+  const handleDelete = async () => {
+    const filterData = data.filter((data: DataType) => data.id !== detailsId);
+    await setItem('data', JSON.stringify(filterData)).then(() => {
+      mutate();
+      router.back();
+    });
   };
   return (
     <>
       <ButtonContainer>
-        <RemoveButton date={detailsId} handleFun={handleGoIndex} />
+        <CommonButton handleFun={openModal} backgroundColor="rgb(254 97 97);">
+          삭제
+        </CommonButton>
       </ButtonContainer>
       <ModalComponent isOpen={isOpen} closeModal={closeModal}>
-        <WarningModal multiple closeModal={closeModal} />
+        <WarningModal>
+          <WarningModal.Text>해당 메모가 삭제됩니다.</WarningModal.Text>
+          <WarningModal.Button buttonColor="rgb(254 97 97)" handleFun={handleDelete}>
+            삭제
+          </WarningModal.Button>
+        </WarningModal>
       </ModalComponent>
     </>
   );

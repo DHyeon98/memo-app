@@ -1,14 +1,11 @@
-import { getItem, setItem } from '@/apis';
-import RemoveButton from '@/components/common/button/card-button/remove-button/remove-button';
-import ThemeText from '@/components/common/theme-text/theme-text';
+import { setItem } from '@/apis';
 import DetailsButton from '@/components/details/details-button/details-button';
 import DetailsDate from '@/components/details/details-date/details-date';
 import Textarea from '@/components/index/textarea/textarea';
 import { themeType } from '@/constants/theme';
 import { ThemeContext } from '@/contexts/themProvider';
-import { conversionTime } from '@/utils/conversionTime';
+import { DataType } from '@/types/data';
 import { RouteProp, useRoute } from '@react-navigation/native';
-import { useRouter } from 'expo-router';
 import { useContext, useState, useEffect } from 'react';
 import styled from 'styled-components/native';
 import useSWR from 'swr';
@@ -19,13 +16,8 @@ type RouteParams = {
   };
 };
 
-interface DataItem {
-  id: string;
-  text: string;
-}
-
 export default function Details() {
-  const [detailsData, setDetailsData] = useState<DataItem>();
+  const [detailsData, setDetailsData] = useState<DataType>();
   const { data, mutate } = useSWR('data');
   const [text, setText] = useState('');
   const { theme } = useContext(ThemeContext);
@@ -34,7 +26,7 @@ export default function Details() {
 
   const handleData = async () => {
     if (data) {
-      const filterData = data.filter((data: DataItem) => data.id === id);
+      const filterData = data.filter((data: DataType) => data.id === id);
       setDetailsData(filterData[0]);
       setText(filterData[0].text);
     }
@@ -42,8 +34,8 @@ export default function Details() {
 
   const handleModifyData = async () => {
     if (!text) return;
-    const parseData = data.filter((data: DataItem) => data.id !== id);
-    const newData: DataItem = {
+    const parseData = data.filter((data: DataType) => data.id !== id);
+    const newData = {
       id: Date.now().toString(),
       text: text,
     };

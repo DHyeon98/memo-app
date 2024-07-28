@@ -2,11 +2,9 @@ import { SortContext } from '@/contexts/sortProvidedr';
 import { useContext, useEffect, useState } from 'react';
 import { FlatList } from 'react-native';
 import CardItem from '../card/card-Item/card-item';
+import { DataType } from '@/types/data';
 interface CardType {
-  data: {
-    id: string;
-    text: string;
-  }[];
+  data: DataType[];
 }
 export default function Card({ data }: CardType) {
   const [columNum, setColumNum] = useState(1);
