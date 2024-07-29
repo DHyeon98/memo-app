@@ -4,28 +4,30 @@ import { useContext, Suspense } from 'react';
 import { ThemeContext } from '@/contexts/themProvider';
 import { themeType } from '@/constants/theme';
 import DataForm from '@/components/index/data-form/data-form';
-import { useFonts } from '@/hook/usefonts';
 import useSWR from 'swr';
 import SearchButton from '@/components/index/search- button/search-button';
 import CardSkeleton from '@/components/common/skeleton/card-skeleton/card-skeleton';
+import { StyleSheet } from 'react-native';
 
 export default function Index() {
   const { theme } = useContext(ThemeContext);
-  const { data } = useSWR('data');
-  const fontsLoaded = useFonts();
+  const { data, isValidating } = useSWR('data');
 
-  if (!fontsLoaded) return null;
   return (
-    <Container theme={themeType(theme)}>
+    <Container theme={themeType(theme)} style={styles.container}>
       <DataForm />
-      <Suspense fallback={<CardSkeleton />}>
-        <Card data={data} />
-      </Suspense>
+      {isValidating ? <CardSkeleton /> : <Card data={data} />}
       <SearchButton />
     </Container>
   );
 }
-
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    paddingTop: 30,
+    paddingHorizontal: 16,
+  },
+});
 export const Container = styled.SafeAreaView`
   flex: 1;
   background-color: ${({ theme }) => theme.bgColor};

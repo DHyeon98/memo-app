@@ -7,12 +7,8 @@ interface RemoveButtonType {
 }
 
 export default function RemoveButton({ date, handleFun }: RemoveButtonType) {
-  const onRemoveData = () => {
-    handleRemoveData(date, handleFun);
-  };
-
   return (
-    <CommonButton handleFun={onRemoveData} backgroundColor="rgb(254 97 97);">
+    <CommonButton handleFun={handleFun} backgroundColor="rgb(254 97 97);">
       삭제
     </CommonButton>
   );
