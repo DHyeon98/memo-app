@@ -7,7 +7,7 @@ import DataForm from '@/components/index/data-form/data-form';
 import { useFonts } from '@/hook/usefonts';
 import useSWR from 'swr';
 import SearchButton from '@/components/index/search- button/search-button';
-import CardSkeleton from '@/components/common/skeleton/card-skeleton';
+import CardSkeleton from '@/components/common/skeleton/card-skeleton/card-skeleton';
 
 export default function Index() {
   const { theme } = useContext(ThemeContext);
@@ -18,8 +18,9 @@ export default function Index() {
   return (
     <Container theme={themeType(theme)}>
       <DataForm />
-      {/* <Card data={data} /> */}
-      <CardSkeleton />
+      <Suspense fallback={<CardSkeleton />}>
+        <Card data={data} />
+      </Suspense>
       <SearchButton />
     </Container>
   );

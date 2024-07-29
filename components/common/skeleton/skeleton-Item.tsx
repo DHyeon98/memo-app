@@ -1,20 +1,20 @@
 import { useEffect, useRef } from 'react';
 import { Animated, StyleSheet } from 'react-native';
 
-export const UseSkeletonAnimation = () => {
-  const opacity = useRef(new Animated.Value(0)).current;
+export default function SkeletonItem() {
+  const opacity = useRef(new Animated.Value(0.5)).current;
 
   useEffect(() => {
     Animated.loop(
       Animated.sequence([
         Animated.timing(opacity, {
           toValue: 1,
-          duration: 3000,
+          duration: 500,
           useNativeDriver: true,
         }),
         Animated.timing(opacity, {
-          toValue: 0,
-          duration: 3000,
+          toValue: 0.5,
+          duration: 500,
           useNativeDriver: true,
         }),
       ]),
@@ -22,11 +22,11 @@ export const UseSkeletonAnimation = () => {
   }, []);
 
   return <Animated.View style={[styles.skeleton, { opacity }]} />;
-};
+}
 
 const styles = StyleSheet.create({
   skeleton: {
-    height: 20,
+    height: '100%',
     width: '100%',
     backgroundColor: '#aaa',
     borderRadius: 4,
