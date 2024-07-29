@@ -1,12 +1,13 @@
 import styled from 'styled-components/native';
 import Card from '@/components/common/card/card';
-import { useContext } from 'react';
+import { useContext, Suspense } from 'react';
 import { ThemeContext } from '@/contexts/themProvider';
 import { themeType } from '@/constants/theme';
 import DataForm from '@/components/index/data-form/data-form';
 import { useFonts } from '@/hook/usefonts';
 import useSWR from 'swr';
 import SearchButton from '@/components/index/search- button/search-button';
+import CardSkeleton from '@/components/common/skeleton/card-skeleton';
 
 export default function Index() {
   const { theme } = useContext(ThemeContext);
@@ -17,7 +18,8 @@ export default function Index() {
   return (
     <Container theme={themeType(theme)}>
       <DataForm />
-      <Card data={data} />
+      {/* <Card data={data} /> */}
+      <CardSkeleton />
       <SearchButton />
     </Container>
   );
