@@ -1,22 +1,24 @@
 import styled from 'styled-components/native';
 import Card from '@/components/common/card/card';
-import { useContext, Suspense } from 'react';
+import { useContext, useEffect } from 'react';
 import { ThemeContext } from '@/contexts/themProvider';
 import { themeType } from '@/constants/theme';
 import DataForm from '@/components/index/data-form/data-form';
 import useSWR from 'swr';
-import SearchButton from '@/components/index/search- button/search-button';
+import SearchButton from '@/components/index/search-button/search-button';
 import CardSkeleton from '@/components/common/skeleton/card-skeleton/card-skeleton';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Text } from 'react-native';
+import { ErrorBoundary } from 'react-error-boundary';
 
 export default function Index() {
   const { theme } = useContext(ThemeContext);
-  const { data, isValidating } = useSWR('data');
-
+  const { data, isLoading } = useSWR('data');
   return (
     <Container theme={themeType(theme)} style={styles.container}>
       <DataForm />
-      {isValidating ? <CardSkeleton /> : <Card data={data} />}
+      <ErrorBoundary fallbackRender={() => <Text>데이터를 불러오는 중 문제가 발생했습니다.</Text>}>
+        {isLoading ? <CardSkeleton /> : <Card data={data} />}
+      </ErrorBoundary>
       <SearchButton />
     </Container>
   );

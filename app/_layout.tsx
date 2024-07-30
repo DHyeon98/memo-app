@@ -7,6 +7,7 @@ import { getItem } from '@/apis';
 import { useFonts } from 'expo-font';
 
 const fetcher = async () => {
+  await new Promise((resolve) => setTimeout(resolve, 1000));
   const data = await getItem('data');
   return data ? JSON.parse(data) : null;
 };

@@ -1,7 +1,6 @@
 import { themeType } from '@/constants/theme';
 import { ThemeContext } from '@/contexts/themProvider';
 import { useContext } from 'react';
-import styled from 'styled-components/native';
 import SkeletonItem from '../../skeleton-Item';
 import { StyleSheet, View } from 'react-native';
 

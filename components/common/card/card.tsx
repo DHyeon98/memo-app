@@ -1,6 +1,6 @@
 import { SortContext } from '@/contexts/sortProvidedr';
 import { useContext, useEffect, useState } from 'react';
-import { FlatList } from 'react-native';
+import { FlatList, Text } from 'react-native';
 import CardItem from '../card/card-Item/card-item';
 import { DataType } from '@/types/data';
 interface CardType {
@@ -15,7 +15,6 @@ export default function Card({ data }: CardType) {
     setKey(sort);
     setColumNum(sort === 'GRID' ? 2 : 1);
   }, [sort]);
-
   return (
     <FlatList
       key={key}
