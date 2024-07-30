@@ -18,7 +18,7 @@ type RouteParams = {
 
 export default function Details() {
   const [detailsData, setDetailsData] = useState<DataType>();
-  const { data, mutate } = useSWR('data');
+  const { data, mutate, isLoading } = useSWR('data');
   const [text, setText] = useState('');
   const { theme } = useContext(ThemeContext);
   const { params } = useRoute<RouteProp<RouteParams, 'params'>>();
@@ -45,8 +45,8 @@ export default function Details() {
   };
 
   useEffect(() => {
-    handleData();
-  }, []);
+    if (!isLoading) handleData();
+  }, [isLoading]);
 
   if (!detailsData) return null;
   return (

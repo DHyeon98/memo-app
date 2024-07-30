@@ -9,10 +9,15 @@ import SearchButton from '@/components/index/search-button/search-button';
 import CardSkeleton from '@/components/common/skeleton/card-skeleton/card-skeleton';
 import { StyleSheet, Text } from 'react-native';
 import { ErrorBoundary } from 'react-error-boundary';
+import { setInitialData } from '@/constants/set-initial-data';
 
 export default function Index() {
   const { theme } = useContext(ThemeContext);
   const { data, isLoading } = useSWR('data');
+
+  useEffect(() => {
+    setInitialData();
+  }, []);
   return (
     <Container theme={themeType(theme)} style={styles.container}>
       <DataForm />

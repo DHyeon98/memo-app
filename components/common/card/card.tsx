@@ -15,6 +15,8 @@ export default function Card({ data }: CardType) {
     setKey(sort);
     setColumNum(sort === 'GRID' ? 2 : 1);
   }, [sort]);
+
+  if (data.length <= 0) return <Text>등록된 데이터가 없습니다.</Text>;
   return (
     <FlatList
       key={key}
