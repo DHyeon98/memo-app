@@ -1,6 +1,6 @@
 import styled from 'styled-components/native';
 import Card from '@/components/common/card/card';
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { ThemeContext } from '@/contexts/themProvider';
 import { themeType } from '@/constants/theme';
 import DataForm from '@/components/index/data-form/data-form';
@@ -13,11 +13,18 @@ import { setInitialData } from '@/constants/set-initial-data';
 
 export default function Index() {
   const { theme } = useContext(ThemeContext);
-  const { data, isLoading } = useSWR('data');
+  const { data } = useSWR('data');
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     setInitialData();
+    const timeout = setTimeout(() => {
+      setIsLoading(false);
+    }, 1000);
+
+    return () => clearTimeout(timeout);
   }, []);
+
   return (
     <Container theme={themeType(theme)} style={styles.container}>
       <DataForm />
