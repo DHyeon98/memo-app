@@ -1,9 +1,11 @@
 import { setItem } from '@/apis';
+import DetailSkeleton from '@/components/common/skeleton/detail-skeleton/detail-skeleton';
 import DetailsButton from '@/components/details/details-button/details-button';
 import DetailsDate from '@/components/details/details-date/details-date';
 import Textarea from '@/components/index/textarea/textarea';
 import { themeType } from '@/constants/theme';
 import { ThemeContext } from '@/contexts/themProvider';
+import { useLoadingSkeleton } from '@/hook/useLoadingSkeleton';
 import { DataType } from '@/types/data';
 import { RouteProp, useRoute } from '@react-navigation/native';
 import { useContext, useState, useEffect } from 'react';
@@ -18,10 +20,11 @@ type RouteParams = {
 
 export default function Details() {
   const [detailsData, setDetailsData] = useState<DataType>();
-  const { data, mutate, isLoading } = useSWR('data');
   const [text, setText] = useState('');
   const { theme } = useContext(ThemeContext);
+  const { data, mutate, isLoading } = useSWR('data');
   const { params } = useRoute<RouteProp<RouteParams, 'params'>>();
+  const skeletonLoading = useLoadingSkeleton();
   const id = params ? params.id : 'id 값이 없습니다.';
 
   const handleData = async () => {
@@ -51,9 +54,15 @@ export default function Details() {
   if (!detailsData) return null;
   return (
     <Container theme={themeType(theme)}>
-      <DetailsDate detailsId={id} />
-      <Textarea onBlur={handleModifyData} type="details" onChangeText={setText} defaultValue={detailsData.text} />
-      <DetailsButton detailsId={id} />
+      {isLoading || skeletonLoading ? (
+        <DetailSkeleton />
+      ) : (
+        <>
+          <DetailsDate detailsId={id} />
+          <Textarea onBlur={handleModifyData} type="details" onChangeText={setText} defaultValue={detailsData.text} />
+          <DetailsButton detailsId={id} />
+        </>
+      )}
     </Container>
   );
 }

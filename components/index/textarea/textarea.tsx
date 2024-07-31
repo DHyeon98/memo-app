@@ -13,7 +13,6 @@ export default function Textarea(props: TextareaType) {
     <TextInput
       style={[styles[props.type], theme === 'light' ? styles.light : styles.dark]}
       multiline={true}
-      defaultValue={props.defaultValue}
       {...props}
     />
   );

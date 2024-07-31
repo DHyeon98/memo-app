@@ -3,6 +3,7 @@ import { useContext, useEffect, useState } from 'react';
 import { FlatList, Text } from 'react-native';
 import CardItem from '../card/card-Item/card-item';
 import { DataType } from '@/types/data';
+import ThemeText from '../theme-text/theme-text';
 interface CardType {
   data: DataType[];
 }
@@ -16,7 +17,7 @@ export default function Card({ data }: CardType) {
     setColumNum(sort === 'GRID' ? 2 : 1);
   }, [sort]);
 
-  if (data.length <= 0) return <Text>등록된 데이터가 없습니다.</Text>;
+  if (data.length <= 0) return <ThemeText fontSize="16px">등록된 데이터가 없습니다.</ThemeText>;
   return (
     <FlatList
       key={key}
