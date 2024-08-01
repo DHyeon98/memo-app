@@ -1,12 +1,11 @@
 import { setItem } from '@/apis';
-import RemoveButton from '@/components/common/button/card-button/remove-button/remove-button';
-import CommonButton from '@/components/common/button/common-button';
-import WarningModal from '@/components/common/modal/warning-modal/warning-modal';
+import { useRouter } from 'expo-router';
+import useSWR from 'swr';
 import { useModal } from '@/hook/useModal';
 import { DataType } from '@/types/data';
-import { useRouter } from 'expo-router';
+import CommonButton from '@/components/common/button/common-button';
+import WarningModal from '@/components/common/modal/warning-modal/warning-modal';
 import styled from 'styled-components/native';
-import useSWR from 'swr';
 
 interface DetailsButtonType {
   detailsId: string;

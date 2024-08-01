@@ -1,12 +1,12 @@
-import { conversionTime } from '@/utils/conversionTime';
-import styled from 'styled-components/native';
 import { useContext } from 'react';
+import { StyleSheet } from 'react-native';
+import { Link } from 'expo-router';
 import { ThemeContext } from '@/contexts/themProvider';
-import { themeType } from '@/constants/theme';
 import { SortContext } from '@/contexts/sortProvidedr';
 import { extractSortStyle } from '@/constants/sort-type';
-import { View, StyleSheet } from 'react-native';
-import { Link } from 'expo-router';
+import { conversionTime } from '@/utils/conversionTime';
+import styled from 'styled-components/native';
+import ThemeText from '../../theme-text/theme-text';
 
 interface CardItemType {
   text: string;
@@ -21,28 +21,18 @@ export default function CardItem({ text, date }: CardItemType) {
 
   return (
     <Link href={`detail/${date}`} style={stylesCondition}>
-      <View>
-        <DateText theme={themeType(theme)}>{conversionTime(date)}</DateText>
-        <Text numberOfLines={3} theme={themeType(theme)}>
-          {text}
-        </Text>
-      </View>
+      <DateTextBox>
+        <ThemeText fontFamily="Pretendard-Bold">{conversionTime(date)}</ThemeText>
+      </DateTextBox>
+      <ThemeText numberOfLines={3}>{text}</ThemeText>
     </Link>
   );
 }
 
-const DateText = styled.Text`
-  font-family: 'Pretendard-Bold';
+const DateTextBox = styled.View`
   margin-bottom: 5px;
-  word-break: keep-all;
-  width: 100%;
-  color: ${({ theme }) => theme.textColor};
 `;
-const Text = styled.Text`
-  color: ${({ theme }) => theme.textColor};
-  line-height: 20px;
-  font-family: 'Pretendard';
-`;
+
 const styles = StyleSheet.create({
   Link: {
     padding: 10,

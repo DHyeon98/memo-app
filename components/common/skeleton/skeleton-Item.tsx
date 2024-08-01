@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react';
-import { Animated, StyleSheet } from 'react-native';
+import { Animated } from 'react-native';
+import styled from 'styled-components/native';
 
 export default function SkeletonItem() {
   const opacity = useRef(new Animated.Value(0.5)).current;
@@ -21,14 +22,12 @@ export default function SkeletonItem() {
     ).start();
   }, []);
 
-  return <Animated.View style={[styles.skeleton, { opacity }]} />;
+  return <Skeleton style={{ opacity }} />;
 }
 
-const styles = StyleSheet.create({
-  skeleton: {
-    height: '100%',
-    width: '100%',
-    backgroundColor: '#aaa',
-    borderRadius: 4,
-  },
-});
+const Skeleton = styled(Animated.View)`
+  height: 100%;
+  width: 100%;
+  background-color: #aaa;
+  border-radius: 4px;
+`;

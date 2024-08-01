@@ -6,7 +6,6 @@ import { setItem } from '@/apis';
 import useSWR from 'swr';
 import { useModal } from '@/hook/useModal';
 import WarningModal from '@/components/common/modal/warning-modal/warning-modal';
-import { StyleSheet, View } from 'react-native';
 
 export default function DataForm() {
   const { data, mutate } = useSWR('data');
@@ -35,11 +34,11 @@ export default function DataForm() {
   return (
     <FormContainer>
       <Textarea type="basic" value={text} onChangeText={setText} />
-      <View style={styles.buttonBox}>
+      <ButtonBox>
         <SubmitButton handleSubmit={handleSubmit}>
           <ButtonText>추가</ButtonText>
         </SubmitButton>
-      </View>
+      </ButtonBox>
       <ModalComponent closeModal={closeModal} isOpen={isOpen}>
         <WarningModal>
           <WarningModal.Text>내용을 입력해주세요.</WarningModal.Text>
@@ -60,8 +59,6 @@ const ButtonText = styled.Text`
   color: #fff;
   font-family: 'Pretendard';
 `;
-const styles = StyleSheet.create({
-  buttonBox: {
-    height: 40,
-  },
-});
+const ButtonBox = styled.View`
+  height: 40px;
+`;

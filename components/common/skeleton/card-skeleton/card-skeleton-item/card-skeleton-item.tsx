@@ -2,37 +2,32 @@ import { themeType } from '@/constants/theme';
 import { ThemeContext } from '@/contexts/themProvider';
 import { useContext } from 'react';
 import SkeletonItem from '../../skeleton-Item';
-import { StyleSheet, View } from 'react-native';
+import styled from 'styled-components/native';
 
 export default function CardSkeletonItem() {
   const { theme } = useContext(ThemeContext);
-  const styles = createStyles(themeType(theme));
 
   return (
-    <View style={styles.container}>
-      <View style={styles.skeletonBox}>
-        <View style={[styles.skeletonItemContainer, { width: '50%' }]}>
+    <Container>
+      <SkeletonBox theme={themeType(theme)}>
+        <SkeletonItemContainer width="50%">
           <SkeletonItem />
-        </View>
-        <View style={[styles.skeletonItemContainer, { width: '20%' }]}>
+        </SkeletonItemContainer>
+        <SkeletonItemContainer width="50%">
           <SkeletonItem />
-        </View>
-      </View>
-    </View>
+        </SkeletonItemContainer>
+      </SkeletonBox>
+    </Container>
   );
 }
-
-const createStyles = (theme: any) =>
-  StyleSheet.create({
-    container: {
-      gap: 10,
-    },
-    skeletonBox: {
-      padding: 10,
-      backgroundColor: theme.cardBg,
-      gap: 5,
-    },
-    skeletonItemContainer: {
-      height: 20,
-    },
-  });
+const Container = styled.View`
+  gap: 10px;
+`;
+const SkeletonBox = styled.View<{ theme: string }>`
+  padding: 10px;
+  background-color: ${({ theme }) => theme.cardBg};
+  gap: 5px;
+`;
+const SkeletonItemContainer = styled.View<{ width: string }>`
+  height: 20px;
+`;

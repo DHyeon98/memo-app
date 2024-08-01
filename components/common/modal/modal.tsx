@@ -18,7 +18,7 @@ export default function ModalComponent({ children, isOpen, closeModal }: ModalPr
   );
 }
 
-const ModalBackboard = styled.TouchableOpacity`
+const ModalBackboard = styled.Pressable`
   position: absolute;
   width: 100%;
   height: 100%;

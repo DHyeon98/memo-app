@@ -1,7 +1,7 @@
 import { setItem } from '@/apis';
 import Textarea from '@/components/index/textarea/textarea';
 import { DataType } from '@/types/data';
-import { Dispatch, SetStateAction, useState } from 'react';
+import { useState } from 'react';
 import { Text } from 'react-native';
 import useSWR from 'swr';
 

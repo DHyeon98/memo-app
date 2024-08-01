@@ -7,7 +7,6 @@ import { getItem } from '@/apis';
 import { useFonts } from 'expo-font';
 
 const fetcher = async () => {
-  await new Promise((resolve) => setTimeout(resolve, 5000));
   const data = await getItem('data');
   return data ? JSON.parse(data) : null;
 };
@@ -22,10 +21,7 @@ export default function RootLayout() {
     <SortProvider>
       <ThemeProvider>
         <SWRConfig value={{ fetcher }}>
-          <Stack screenOptions={{ header: () => <Header /> }}>
-            <Stack.Screen name="index" />
-            <Stack.Screen name="search" />
-          </Stack>
+          <Stack screenOptions={{ header: () => <Header /> }} />
         </SWRConfig>
       </ThemeProvider>
     </SortProvider>
