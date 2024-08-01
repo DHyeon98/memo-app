@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleProp, StyleSheet, ViewStyle } from 'react-native';
 import { Link } from 'expo-router';
 import { ThemeContext } from '@/contexts/themProvider';
 import { SortContext } from '@/contexts/sortProvidedr';
@@ -20,7 +20,7 @@ export default function CardItem({ text, date }: CardItemType) {
   const stylesCondition = [styles.Link, theme === 'light' ? styles.light : styles.dark, sortStyle];
 
   return (
-    <Link href={`detail/${date}`} style={stylesCondition}>
+    <Link href={`detail/${date}`} style={stylesCondition as StyleProp<ViewStyle>}>
       <DateTextBox>
         <ThemeText fontFamily="Pretendard-Bold">{conversionTime(date)}</ThemeText>
       </DateTextBox>
