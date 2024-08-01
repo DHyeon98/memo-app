@@ -23,11 +23,11 @@ export default function SortList({ theme, closeModal }: SortListType) {
       <FlexContainer>
         <SortButton handleSort={() => handleSort('LIST')} closeModal={closeModal}>
           <ThemeText>리스트 스타일</ThemeText>
-          <SortSvg width={30} height={30} fill={themeType(theme)} />
+          <SortSvg width={30} height={30} fill={themeType(theme).sortFill} />
         </SortButton>
         <SortButton handleSort={() => handleSort('GRID')} closeModal={closeModal}>
           <ThemeText>격자 스타일</ThemeText>
-          <GridSvg width={30} height={30} fill={themeType(theme)} />
+          <GridSvg width={30} height={30} fill={themeType(theme).sortFill} />
         </SortButton>
       </FlexContainer>
     </View>

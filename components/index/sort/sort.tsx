@@ -14,7 +14,7 @@ export default function Sort() {
   return (
     <View>
       <FlexContainer onPress={openModal}>
-        <SortSvg width={30} height={30} fill={themeType(theme)} />
+        <SortSvg width={30} height={30} fill={themeType(theme).sortFill} />
         <ThemeText fontSize="16px" fontFamily="Pretendard-Bold">
           보기
         </ThemeText>

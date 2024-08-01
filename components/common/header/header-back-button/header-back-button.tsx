@@ -11,7 +11,7 @@ export default function HeaderBackButton({ theme }: ThemePropType) {
   };
   return (
     <Pressable onPress={handleBack}>
-      <Arrow width={26} height={26} fill={themeType(theme)} />
+      <Arrow width={26} height={26} fill={themeType(theme).sortFill} />
     </Pressable>
   );
 }
