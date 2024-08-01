@@ -19,7 +19,7 @@ type RouteParams = {
 export default function Details() {
   const [detailsData, setDetailsData] = useState<DataType>();
   const { theme } = useContext(ThemeContext);
-  const { data, isLoading } = useSWR('data', { suspense: true });
+  const { data, isLoading } = useSWR('data');
   const { params } = useRoute<RouteProp<RouteParams, 'params'>>();
   const id = params ? params.id : 'id 값이 없습니다.';
 
