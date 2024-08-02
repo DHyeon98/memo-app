@@ -13,7 +13,7 @@ export default function CardSkeletonItem() {
         <SkeletonItemContainer width="50%">
           <SkeletonItem />
         </SkeletonItemContainer>
-        <SkeletonItemContainer width="50%">
+        <SkeletonItemContainer width="20%">
           <SkeletonItem />
         </SkeletonItemContainer>
       </SkeletonBox>
@@ -29,5 +29,6 @@ const SkeletonBox = styled.View<{ theme: string }>`
   gap: 5px;
 `;
 const SkeletonItemContainer = styled.View<{ width: string }>`
+  width: ${({ width }) => width};
   height: 20px;
 `;

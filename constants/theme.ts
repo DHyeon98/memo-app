@@ -1,3 +1,5 @@
+import styled from 'styled-components/native';
+
 export const lightTheme = {
   bgColor: 'rgb(242, 242, 242)',
   cardBg: '#fff',
@@ -28,10 +30,10 @@ export const themeType = (theme: string) => {
   return theme === 'light' ? lightTheme : darkTheme;
 };
 
-export const sortList = {
-  width: '100%',
-};
+export const SortList = styled.View`
+  width: 100%;
+`;
 
-export const sortGrid = {
-  width: '50%',
-};
+export const SortGrid = styled.View`
+  width: calc(50% - 5px);
+`;

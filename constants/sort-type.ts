@@ -1,18 +1,8 @@
-import { sortGrid, sortList } from './theme';
+import { SortGrid, SortList } from './theme';
+import { View } from 'react-native';
 
-interface SortStyle {
-  width: string;
-}
-
-const sortTypes: Record<string, () => SortStyle> = {
-  LIST() {
-    return sortList;
-  },
-  GRID() {
-    return sortGrid;
-  },
-};
-
-export const extractSortStyle = (sortType: string) => {
-  return sortTypes[sortType]();
+export const sortComponent = (sortType: string) => {
+  if (sortType === 'LIST') return SortList;
+  if (sortType === 'GRID') return SortGrid;
+  return View;
 };
