@@ -20,14 +20,9 @@ export default function CardItem({ text, date, delay }: CardItemType) {
   const sortStyle = extractSortStyle(sort);
   const { theme } = useContext(ThemeContext);
   const stylesCondition = [styles.Link, theme === 'light' ? styles.light : styles.dark, sortStyle];
-  const { opacityAni, translateAni } = useFadeInAnimation(delay);
+  const { opacityAni } = useFadeInAnimation(delay);
   return (
-    <Animated.View
-      style={[
-        stylesCondition as StyleProp<ViewStyle>,
-        { opacity: opacityAni, transform: [{ translateX: translateAni }] },
-      ]}
-    >
+    <Animated.View style={[stylesCondition as StyleProp<ViewStyle>, { opacity: opacityAni }]}>
       <Link href={`detail/${date}`}>
         <DateTextBox>
           <ThemeText fontFamily="Pretendard-Bold">{conversionTime(date)}</ThemeText>

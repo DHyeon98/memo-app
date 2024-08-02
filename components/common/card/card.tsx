@@ -1,6 +1,6 @@
 import { SortContext } from '@/contexts/sortProvidedr';
 import { useContext, useEffect, useState } from 'react';
-import { FlatList, FlatListProps } from 'react-native';
+import { FlatList, Text } from 'react-native';
 import CardItem from '../card/card-Item/card-item';
 import { DataType } from '@/types/data';
 import ThemeText from '../theme-text/theme-text';
@@ -20,7 +20,7 @@ export default function Card({ data }: CardType) {
 
   if (data.length <= 0) return <ThemeText fontSize="16px">등록된 데이터가 없습니다.</ThemeText>;
   return (
-    <List
+    <FlatList
       key={key}
       data={data}
       numColumns={columNum}
@@ -33,6 +33,3 @@ export default function Card({ data }: CardType) {
     />
   );
 }
-const List = styled(FlatList as new (props: FlatListProps<DataType>) => FlatList<DataType>)`
-  overflow-x: visible;
-`;
