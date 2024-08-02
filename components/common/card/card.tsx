@@ -23,12 +23,15 @@ export default function Card({ data }: CardType) {
       key={key}
       data={data}
       numColumns={columNum}
-      renderItem={({ item }) => <CardItem text={item.text} date={item.id} />}
+      renderItem={({ item, index }) => <CardItem text={item.text} date={item.id} delay={index * 200} />}
       keyExtractor={(item) => item.id.toString()}
       contentContainerStyle={{
         gap: 10,
       }}
       columnWrapperStyle={columNum > 1 ? { gap: 10 } : undefined}
+      style={{
+        overflow: 'visible',
+      }}
     />
   );
 }
