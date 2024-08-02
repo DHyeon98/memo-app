@@ -1,9 +1,10 @@
 import { SortContext } from '@/contexts/sortProvidedr';
 import { useContext, useEffect, useState } from 'react';
-import { FlatList, Text } from 'react-native';
+import { FlatList, FlatListProps } from 'react-native';
 import CardItem from '../card/card-Item/card-item';
 import { DataType } from '@/types/data';
 import ThemeText from '../theme-text/theme-text';
+import styled from 'styled-components/native';
 interface CardType {
   data: DataType[];
 }
@@ -19,7 +20,7 @@ export default function Card({ data }: CardType) {
 
   if (data.length <= 0) return <ThemeText fontSize="16px">등록된 데이터가 없습니다.</ThemeText>;
   return (
-    <FlatList
+    <List
       key={key}
       data={data}
       numColumns={columNum}
@@ -29,9 +30,9 @@ export default function Card({ data }: CardType) {
         gap: 10,
       }}
       columnWrapperStyle={columNum > 1 ? { gap: 10 } : undefined}
-      style={{
-        overflow: 'visible',
-      }}
     />
   );
 }
+const List = styled(FlatList as new (props: FlatListProps<DataType>) => FlatList<DataType>)`
+  overflow-x: visible;
+`;
