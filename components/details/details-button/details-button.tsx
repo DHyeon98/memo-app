@@ -6,6 +6,7 @@ import { DataType } from '@/types/data';
 import CommonButton from '@/components/common/button/common-button';
 import WarningModal from '@/components/common/modal/warning-modal/warning-modal';
 import styled from 'styled-components/native';
+import { useBgColor } from '@/hook/useBgColor';
 
 interface DetailsButtonType {
   detailsId: string;
@@ -15,7 +16,7 @@ export default function DetailsButton({ detailsId }: DetailsButtonType) {
   const { mutate, data } = useSWR('data');
   const router = useRouter();
   const { isOpen, closeModal, ModalComponent, openModal } = useModal();
-
+  const { handlePressIn, handlePressOut, bgColor } = useBgColor('#fe6161', '#aa4141');
   const handleDelete = async () => {
     const filterData = data.filter((data: DataType) => data.id !== detailsId);
     await setItem('data', JSON.stringify(filterData)).then(() => {
@@ -26,7 +27,12 @@ export default function DetailsButton({ detailsId }: DetailsButtonType) {
   return (
     <>
       <ButtonContainer>
-        <CommonButton handleFun={openModal} backgroundColor="rgb(254 97 97);">
+        <CommonButton
+          onPress={openModal}
+          onPressIn={handlePressIn}
+          onPressOut={handlePressOut}
+          backgroundColor={bgColor}
+        >
           삭제
         </CommonButton>
       </ButtonContainer>

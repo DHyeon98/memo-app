@@ -11,7 +11,7 @@ export default function ErrorSubPage() {
   return (
     <Container>
       <ThemeText fontSize="24">데이터를 불러오는데 문제가 발생했습니다.</ThemeText>
-      <CommonButton backgroundColor="#555" handleFun={handlePushHome}>
+      <CommonButton backgroundColor="#555" onPress={handlePushHome}>
         홈으로
       </CommonButton>
     </Container>

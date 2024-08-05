@@ -22,7 +22,7 @@ function Text({ children }: PropsWithChildren) {
 
 function Button({ children, handleFun, buttonColor }: PropsWithChildren<ModalButtonType>) {
   return (
-    <CommonButton handleFun={handleFun} backgroundColor={buttonColor}>
+    <CommonButton onPress={handleFun} backgroundColor={buttonColor}>
       {children}
     </CommonButton>
   );

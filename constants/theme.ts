@@ -1,3 +1,4 @@
+import { Dimensions } from 'react-native';
 import styled from 'styled-components/native';
 
 export const lightTheme = {
@@ -29,11 +30,3 @@ export const darkTheme = {
 export const themeType = (theme: string) => {
   return theme === 'light' ? lightTheme : darkTheme;
 };
-
-export const SortList = styled.View`
-  width: 100%;
-`;
-
-export const SortGrid = styled.View`
-  width: calc(50% - 5px);
-`;

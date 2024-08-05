@@ -11,7 +11,7 @@ export default function DeleteModal({ closeModal, handleDelete }: DeleteModalTyp
     <Container>
       <WarningImgae source={require('@/assets/images/warning.png')} />
       <ModlaText>해당 메모가 삭제됩니다.</ModlaText>
-      <CommonButton handleFun={handleDelete} backgroundColor="rgb(254 97 97)">
+      <CommonButton onPress={handleDelete} backgroundColor="rgb(254 97 97)">
         삭제
       </CommonButton>
     </Container>
