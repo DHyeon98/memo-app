@@ -9,6 +9,7 @@ import DetailSkeleton from '../common/skeleton/detail-skeleton/detail-skeleton';
 import { themeType } from '@/constants/theme';
 import styled from 'styled-components/native';
 import DetailsText from './details-text/details-text';
+import { Keyboard } from 'react-native';
 
 type RouteParams = {
   params: {
@@ -35,7 +36,7 @@ export default function Details() {
   }, [isLoading]);
 
   return (
-    <Container theme={themeType(theme)}>
+    <Container theme={themeType(theme)} onPress={() => Keyboard.dismiss()}>
       {isLoading ? (
         <DetailSkeleton />
       ) : (
@@ -49,7 +50,7 @@ export default function Details() {
   );
 }
 
-const Container = styled.SafeAreaView`
+const Container = styled.Pressable`
   flex: 1;
   background-color: ${({ theme }) => theme.bgColor};
   padding-top: 30px;
