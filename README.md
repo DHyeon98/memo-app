@@ -128,5 +128,4 @@ export default function Arrow({ width, height, fill }: svgType) {
 ## 트러블 슈팅
 - [calc 사용이 불가능한 React Native](https://velog.io/@d_hyeon/RN%EC%97%90%EC%84%9C-calc-%EC%82%AC%EC%9A%A9%ED%95%98%EB%8A%94-%EB%B2%95)
 - [Pressable과 Touchable](https://velog.io/@d_hyeon/Pressable-vs-Button-vs-Touchable)
-- React Native에서의 폰트 적용 : 링크
-- 작성중
+- [React Native에서의 폰트 적용](https://velog.io/@d_hyeon/RN-%ED%8F%B0%ED%8A%B8-%EC%B6%94%EA%B0%80%ED%95%98%EA%B8%B0)
