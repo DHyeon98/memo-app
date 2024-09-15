@@ -5,7 +5,7 @@
 - React Native + Expo로 개발된 간단한 메모 어플리케이션 입니다.
 
 ## 어플리케이션 링크
-- Android: https://expo.dev/artifacts/eas/7rrLLNtPZLheSVSDDhKHN.apk
+- Android: https://expo.dev/artifacts/eas/gwDsZwExmJRi3ZbC99uqDM.apk
 
 ## 기획의도
 - 공식문서를 보고 React Native 공부를 하면서 간단한 어플리케이션을 만들고자 하였습니다.
