@@ -1,14 +1,10 @@
-import { getItem, setItem } from '@/apis';
-import RemoveButton from '@/components/common/button/card-button/remove-button/remove-button';
-import ThemeText from '@/components/common/theme-text/theme-text';
+import { setItem } from '@/apis';
 import DetailsButton from '@/components/details/details-button/details-button';
 import DetailsDate from '@/components/details/details-date/details-date';
 import Textarea from '@/components/index/textarea/textarea';
 import { themeType } from '@/constants/theme';
 import { ThemeContext } from '@/contexts/themProvider';
-import { conversionTime } from '@/utils/conversionTime';
 import { RouteProp, useRoute } from '@react-navigation/native';
-import { useRouter } from 'expo-router';
 import { useContext, useState, useEffect } from 'react';
 import styled from 'styled-components/native';
 import useSWR from 'swr';
