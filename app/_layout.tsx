@@ -12,6 +12,7 @@ const fetcher = async () => {
 };
 
 export default function RootLayout() {
+  // 폰트 적용 코드 입니다.
   const [loaded, error] = useFonts({
     Pretendard: require('../assets/fonts/Pretendard-Medium-subset.otf'),
     'Pretendard-Bold': require('../assets/fonts/Pretendard-Bold-subset.otf'),

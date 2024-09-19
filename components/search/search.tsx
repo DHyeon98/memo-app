@@ -17,6 +17,7 @@ export default function Search() {
   const isFirstRender = useRef(true);
   const { ModalComponent, isOpen, openModal, closeModal } = useModal();
 
+  // 검색한 키워드를 필터링하는 함수입니다.
   const handleData = async () => {
     if (!text) return openModal();
     if (data) {
@@ -27,12 +28,9 @@ export default function Search() {
     }
   };
 
+  // 첫 번째 렌더링 시 필터링 작업을 방지하기 위한 코드입니다.
   useEffect(() => {
-    if (isFirstRender.current) {
-      isFirstRender.current = false;
-    } else {
-      handleData();
-    }
+    isFirstRender.current ? (isFirstRender.current = false) : handleData();
   }, [data]);
 
   return (
