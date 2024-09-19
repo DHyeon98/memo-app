@@ -7,18 +7,24 @@ import useSWR from 'swr';
 import { useModal } from '@/hook/useModal';
 import WarningModal from '@/components/common/modal/warning-modal/warning-modal';
 
+/**
+ * 메모를 추가하는 form 컴포넌트 입니다.
+ */
 export default function DataForm() {
   const { data, mutate } = useSWR('data');
   const [text, setText] = useState('');
   const { isOpen, openModal, closeModal, ModalComponent } = useModal();
 
+  // 메모 추가 함수 입니다.
+  // 작성된 텍스트가 없다면 모달이 나옵니다.
+  // data가 없을 때는 form에 작성된 텍스트를 추가하고,
+  // data가 있다면 data 앞에 작성된 텍스트를 추가합니다.
   const handleSubmit = async () => {
     const newData = {
       id: Date.now().toString(),
       text: text,
     };
     if (!text) return openModal();
-
     const updatedData = data ? [newData, ...data] : [newData];
     await setItem('data', JSON.stringify(updatedData));
     setText('');

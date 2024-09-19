@@ -7,6 +7,12 @@ interface TextareaType extends TextInputProps {
   type: 'basic' | 'details';
 }
 
+/**
+ * textarea 컴포넌트 입니다.
+ * type은 basic과 details가 있습니다.
+ * basic은 메인에서 사용하는 높이가 작은 크기의 인풋이고,
+ * details는 상세페이지에서 사용하는 높이가 큰 크기의 인풋입니다.
+ */
 export default function Textarea(props: TextareaType) {
   const { theme } = useContext(ThemeContext);
   return (
