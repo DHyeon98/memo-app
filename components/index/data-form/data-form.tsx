@@ -18,17 +18,11 @@ export default function DataForm() {
       text: text,
     };
     if (!text) return openModal();
-    if (data) {
-      const updatedData = [newData, ...data];
-      await setItem('data', JSON.stringify(updatedData));
-      setText('');
-      mutate();
-    } else {
-      const updatedData = [newData];
-      await setItem('data', JSON.stringify(updatedData));
-      setText('');
-      mutate();
-    }
+
+    const updatedData = data ? [newData, ...data] : [newData];
+    await setItem('data', JSON.stringify(updatedData));
+    setText('');
+    mutate();
   };
 
   return (
