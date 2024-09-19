@@ -17,6 +17,9 @@ type RouteParams = {
   };
 };
 
+/**
+ * 상세페이지 컴포넌트 입니다.
+ */
 export default function Details() {
   const [detailsData, setDetailsData] = useState<DataType>();
   const { theme } = useContext(ThemeContext);
@@ -24,6 +27,7 @@ export default function Details() {
   const { params } = useRoute<RouteProp<RouteParams, 'params'>>();
   const id = params ? params.id : 'id 값이 없습니다.';
 
+  // 해당 페이지의 id 값을 받아와 해당 id 값과 일치하는 데이터를 렌더링 합니다.
   const handleData = async () => {
     if (data) {
       const filterData = data.filter((data: DataType) => data.id === id);
@@ -32,7 +36,7 @@ export default function Details() {
   };
 
   useEffect(() => {
-    if (!isLoading) handleData();
+    handleData();
   }, [isLoading]);
 
   return (

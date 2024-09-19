@@ -12,11 +12,17 @@ interface DetailsButtonType {
   detailsId: string;
 }
 
+/**
+ * 상세 페이지의 삭제 버튼 컴포넌트 입니다.
+ */
 export default function DetailsButton({ detailsId }: DetailsButtonType) {
   const { mutate, data } = useSWR('data');
   const router = useRouter();
   const { isOpen, closeModal, ModalComponent, openModal } = useModal();
   const { handlePressIn, handlePressOut, bgColor } = useBgColor('#fe6161', '#aa4141');
+
+  // 삭제 버튼을 눌렀을 때 해당 data의 id를 찾아서 삭제하는 함수입니다.
+  // 삭제 후 mutation하고 메인 페이지 또는 검색 페이지로 이동합니다.
   const handleDelete = async () => {
     const filterData = data.filter((data: DataType) => data.id !== detailsId);
     await setItem('data', JSON.stringify(filterData)).then(() => {
