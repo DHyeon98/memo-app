@@ -1,13 +1,6 @@
 import ThemeText from '@/components/common/theme-text/theme-text';
 import { conversionTime } from '@/utils/conversionTime';
-import { RouteProp, useRoute } from '@react-navigation/native';
 import styled from 'styled-components/native';
-
-type RouteParams = {
-  params: {
-    id: string;
-  };
-};
 
 interface DetailsDateType {
   detailsId: string;

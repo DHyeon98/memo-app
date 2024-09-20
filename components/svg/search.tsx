@@ -1,6 +1,7 @@
+import { svgType } from '@/types/svg';
 import { Path, Svg } from 'react-native-svg';
 
-export default function Search({ width, height, fill }: any) {
+export default function Search({ width, height, fill }: svgType) {
   return (
     <Svg width={width} height={height} viewBox="0 0 20 20" fill="none">
       <Path

@@ -1,47 +1,43 @@
 import styled from 'styled-components/native';
 import CommonButton from '../../button/common-button';
-import { Image } from 'react-native';
+import { PropsWithChildren } from 'react';
 
-interface WarningModalType {
-  closeModal: () => void;
-  multiple: boolean;
+interface ModalButtonType {
+  handleFun: () => void;
+  buttonColor: string;
 }
 
-export default function WarningModal({ closeModal, multiple }: WarningModalType) {
+/**
+ * 공통 디자인의 경고 모달이 있기 때문에 컴파운드 패턴으로 제작하였습니다.
+ */
+export default function WarningModal({ children }: PropsWithChildren) {
   return (
     <Container>
       <WarningImgae source={require('@/assets/images/warning.png')} />
-      <ModlaText>내용을 입력해주세요.</ModlaText>
-      <CommonButton handleFun={closeModal} backgroundColor="#47b976">
-        확인
-      </CommonButton>
+      {children}
     </Container>
   );
 }
 
-function ModalButton({ multiple, closeModal }: WarningModalType) {
-  return multiple ? (
-    <ButtonContainer>
-      <CommonButton handleFun={closeModal} backgroundColor="rgb(254 97 97)">
-        삭제
-      </CommonButton>
-      <CommonButton handleFun={closeModal} backgroundColor="#47b976">
-        확인
-      </CommonButton>
-    </ButtonContainer>
-  ) : (
-    <CommonButton handleFun={closeModal} backgroundColor="#47b976">
-      확인
+function Text({ children }: PropsWithChildren) {
+  return <ModalText>{children}</ModalText>;
+}
+
+function Button({ children, handleFun, buttonColor }: PropsWithChildren<ModalButtonType>) {
+  return (
+    <CommonButton onPress={handleFun} backgroundColor={buttonColor}>
+      {children}
     </CommonButton>
   );
 }
+
 const Container = styled.View`
   width: 300px;
   padding: 20px;
   background-color: #fff;
   border-radius: 8px;
 `;
-const ModlaText = styled.Text`
+const ModalText = styled.Text`
   font-size: 16px;
   font-family: 'Pretendard-Bold';
   text-align: center;
@@ -52,6 +48,6 @@ const WarningImgae = styled.Image`
   height: 30px;
   margin: 0 auto;
 `;
-const ButtonContainer = styled.View`
-  flex-direction: row;
-`;
+
+WarningModal.Text = Text;
+WarningModal.Button = Button;

@@ -12,8 +12,13 @@ interface SearchBoxType {
   handleData: () => void;
 }
 
+/**
+ * 검색 폼 컨포넌트 입니다.
+ * 검색 인풋과 submit 버튼으로 구성되어있습니다.
+ */
 export default function SearchBox({ text, setText, handleData }: SearchBoxType) {
   const { theme } = useContext(ThemeContext);
+  // 입력한 키워드로 검색하는 함수 입니다.
   const handleSearch = () => {
     handleData();
   };

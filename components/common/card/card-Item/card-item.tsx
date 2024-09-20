@@ -1,58 +1,50 @@
+import { useContext } from 'react';
+import { Animated, Pressable, useWindowDimensions } from 'react-native';
+import { useRouter } from 'expo-router';
+import { ThemeContext } from '@/contexts/themProvider';
+import { SortContext } from '@/contexts/sortProvidedr';
+import { getCardWidth } from '@/constants/get-card-width';
 import { conversionTime } from '@/utils/conversionTime';
 import styled from 'styled-components/native';
-import { useContext } from 'react';
-import { ThemeContext } from '@/contexts/themProvider';
+import ThemeText from '../../theme-text/theme-text';
+import { useFadeInAnimation } from '@/hook/useFadeInAnimation';
 import { themeType } from '@/constants/theme';
-import { SortContext } from '@/contexts/sortProvidedr';
-import { extractSortStyle } from '@/constants/sort-type';
-import { View, StyleSheet } from 'react-native';
-import { Link } from 'expo-router';
 
 interface CardItemType {
   text: string;
   date: string;
+  delay: number;
 }
 
-export default function CardItem({ text, date }: CardItemType) {
+export default function CardItem({ text, date, delay }: CardItemType) {
   const { sort } = useContext(SortContext);
-  const sortStyle = extractSortStyle(sort);
   const { theme } = useContext(ThemeContext);
-  const stylesCondition = [styles.Link, theme === 'light' ? styles.light : styles.dark, sortStyle];
+  const { opacityAni } = useFadeInAnimation(delay);
+  const expoRouter = useRouter();
+  const { width } = useWindowDimensions();
+  const cardWidth = getCardWidth(sort, width);
+  const handleLink = () => {
+    expoRouter.push(`detail/${date}`);
+  };
 
   return (
-    <Link href={`detail/${date}`} style={stylesCondition}>
-      <View>
-        <DateText theme={themeType(theme)}>{conversionTime(date)}</DateText>
-        <Text numberOfLines={3} theme={themeType(theme)}>
-          {text}
-        </Text>
-      </View>
-    </Link>
+    <AnimationContainer theme={themeType(theme)} width={cardWidth} style={{ opacity: opacityAni }}>
+      <Pressable onPress={handleLink}>
+        <DateTextBox>
+          <ThemeText fontFamily="Pretendard-Bold">{conversionTime(date)}</ThemeText>
+        </DateTextBox>
+        <ThemeText numberOfLines={3}>{text}</ThemeText>
+      </Pressable>
+    </AnimationContainer>
   );
 }
 
-const DateText = styled.Text`
-  font-family: 'Pretendard-Bold';
+const DateTextBox = styled.View`
   margin-bottom: 5px;
-  word-break: keep-all;
-  width: 100%;
-  color: ${({ theme }) => theme.textColor};
 `;
-const Text = styled.Text`
-  color: ${({ theme }) => theme.textColor};
-  line-height: 20px;
-  font-family: 'Pretendard';
+
+const AnimationContainer = styled(Animated.View)<{ width: number }>`
+  background-color: ${({ theme }) => theme.cardBg};
+  width: ${({ width }) => `${width}px`};
+  padding: 10px;
 `;
-const styles = StyleSheet.create({
-  Link: {
-    padding: 10,
-    flexShrink: 1,
-    justifyContent: 'space-between',
-  },
-  dark: {
-    backgroundColor: '#323741',
-  },
-  light: {
-    backgroundColor: '#fff',
-  },
-});

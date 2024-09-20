@@ -2,6 +2,9 @@ import Search from '../../svg/search';
 import { Link } from 'expo-router';
 import { StyleSheet } from 'react-native';
 
+/**
+ * 검색 페이지로 이동하는 버튼 입니다.
+ */
 export default function SearchButton() {
   return (
     <Link href={'/search'} style={styles.Link}>

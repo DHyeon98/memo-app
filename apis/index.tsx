@@ -1,4 +1,4 @@
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export const setItem = async (key: string, value: string) => {
   try {
@@ -13,7 +13,7 @@ export const getItem = async (key: string) => {
     const res = await AsyncStorage.getItem(key);
     return res;
   } catch (e) {
-    throw e;
+    throw new Error();
   }
 };
 

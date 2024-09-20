@@ -14,7 +14,7 @@ export default function Header() {
     <SafeAreaView style={[styles.basic, theme === 'light' ? styles.light : styles.dark]}>
       <HeaderLeft theme={theme} />
       <View style={styles.textContainer}>
-        <HeaderText theme={theme} />
+        <HeaderText />
       </View>
       <ThemeButton />
     </SafeAreaView>

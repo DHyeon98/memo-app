@@ -1,9 +1,10 @@
+import { svgType } from '@/types/svg';
 import { G, Path, Svg } from 'react-native-svg';
 
-export default function LogoSvg({ width, height, fill }: any) {
+export default function LogoSvg({ width, height, fill }: svgType) {
   return (
     <Svg width={width} height={height} viewBox="0 0 1024.000000 1024.000000" preserveAspectRatio="xMidYMid meet">
-      <G transform="translate(0.000000,1024.000000) scale(0.100000,-0.100000)" fill={fill.sortFill} stroke="none">
+      <G transform="translate(0.000000,1024.000000) scale(0.100000,-0.100000)" fill={fill} stroke="none">
         <Path
           d="M2665 8463 c-11 -3 -28 -12 -37 -21 -17 -14 -18 -49 -18 -464 l0
 -448 -294 0 c-274 0 -295 -1 -317 -19 l-24 -19 -3 -295 c-3 -325 1 -357 53
