@@ -1,4 +1,4 @@
-export const lightTheme = {
+export const LIGHT_THEME = {
   bgColor: 'rgb(242, 242, 242)',
   cardBg: '#fff',
   textColor: '#1c1c1c',
@@ -11,7 +11,7 @@ export const lightTheme = {
   logoFill: '#000',
 };
 
-export const darkTheme = {
+export const DARK_THEME = {
   bgColor: '#23242A',
   cardBg: '#323741',
   textColor: '#fff',
@@ -22,8 +22,4 @@ export const darkTheme = {
   headerBg: '#323741',
   sortFill: '#fff',
   logoFill: '#fff',
-};
-
-export const themeType = (theme: string) => {
-  return theme === 'light' ? lightTheme : darkTheme;
 };

@@ -6,10 +6,10 @@ import useSWR from 'swr';
 import DetailsDate from './details-date/details-date';
 import DetailsButton from './details-button/details-button';
 import DetailSkeleton from '../common/skeleton/detail-skeleton/detail-skeleton';
-import { themeType } from '@/constants/theme';
 import styled from 'styled-components/native';
 import DetailsText from './details-text/details-text';
 import { Keyboard } from 'react-native';
+import { conversionType } from '@/utils/conversion-type';
 
 type RouteParams = {
   params: {
@@ -40,7 +40,7 @@ export default function Details() {
   }, [isLoading]);
 
   return (
-    <Container theme={themeType(theme)} onPress={() => Keyboard.dismiss()}>
+    <Container theme={conversionType(theme)} onPress={() => Keyboard.dismiss()}>
       {isLoading ? (
         <DetailSkeleton />
       ) : (

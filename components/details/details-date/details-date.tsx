@@ -1,5 +1,5 @@
 import ThemeText from '@/components/common/theme-text/theme-text';
-import { conversionTime } from '@/utils/conversionTime';
+import { conversionTime } from '@/utils/conversion-time';
 import styled from 'styled-components/native';
 
 interface DetailsDateType {

@@ -1,7 +1,7 @@
 import Card from '@/components/common/card/card';
 import WarningModal from '@/components/common/modal/warning-modal/warning-modal';
 import SearchBox from '@/components/search/search-box/search-box';
-import { themeType } from '@/constants/theme';
+import { conversionType } from '@/utils/conversion-type';
 import { ThemeContext } from '@/contexts/themProvider';
 import { useModal } from '@/hook/useModal';
 import { DataType } from '@/types/data';
@@ -34,7 +34,7 @@ export default function Search() {
   }, [data]);
 
   return (
-    <Container theme={themeType(theme)}>
+    <Container theme={conversionType(theme)}>
       <SearchBox text={text} setText={setText} handleData={handleData} />
       <Card data={searchData} />
       <ModalComponent isOpen={isOpen} closeModal={closeModal}>

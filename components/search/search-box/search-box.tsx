@@ -4,7 +4,7 @@ import { useContext, Dispatch } from 'react';
 import SubmitButton from '@/components/common/button/submit-button/submit-button';
 import styled from 'styled-components/native';
 import Search from '@/components/svg/search';
-import { darkTheme, lightTheme } from '@/constants/theme';
+import { DARK_THEME, LIGHT_THEME } from '@/constants/theme';
 
 interface SearchBoxType {
   text: string;
@@ -19,9 +19,7 @@ interface SearchBoxType {
 export default function SearchBox({ text, setText, handleData }: SearchBoxType) {
   const { theme } = useContext(ThemeContext);
   // 입력한 키워드로 검색하는 함수 입니다.
-  const handleSearch = () => {
-    handleData();
-  };
+  const handleSearch = () => handleData();
   return (
     <Container>
       <TextInput
@@ -53,23 +51,23 @@ const styles = StyleSheet.create({
     flexShrink: 1,
     width: '100%',
     borderColor: `#47b976`,
-    backgroundColor: `${lightTheme.inputBg}`,
+    backgroundColor: `${LIGHT_THEME.inputBg}`,
     borderWidth: 1,
     padding: 10,
     fontSize: 14,
     fontFamily: 'Pretendard',
-    color: `${lightTheme.textColor}`,
+    color: `${LIGHT_THEME.textColor}`,
   },
   dark: {
     flexShrink: 1,
     width: '100%',
     borderColor: '#47b976',
-    backgroundColor: `${darkTheme.inputBg}`,
+    backgroundColor: `${DARK_THEME.inputBg}`,
     borderWidth: 1,
     padding: 10,
     textAlignVertical: 'top',
     fontSize: 14,
     fontFamily: 'Pretendard',
-    color: `${darkTheme.textColor}`,
+    color: `${DARK_THEME.textColor}`,
   },
 });

@@ -3,12 +3,12 @@ import { Animated, Pressable, useWindowDimensions } from 'react-native';
 import { useRouter } from 'expo-router';
 import { ThemeContext } from '@/contexts/themProvider';
 import { SortContext } from '@/contexts/sortProvidedr';
-import { getCardWidth } from '@/constants/get-card-width';
-import { conversionTime } from '@/utils/conversionTime';
+import { getCardWidth } from '@/utils/get-card-width';
+import { conversionTime } from '@/utils/conversion-time';
 import styled from 'styled-components/native';
 import ThemeText from '../../theme-text/theme-text';
 import { useFadeInAnimation } from '@/hook/useFadeInAnimation';
-import { themeType } from '@/constants/theme';
+import { conversionType } from '@/utils/conversion-type';
 
 interface CardItemType {
   text: string;
@@ -28,12 +28,10 @@ export default function CardItem({ text, date, delay }: CardItemType) {
   const cardWidth = getCardWidth(sort, width);
 
   // 상호작용 시 해당 메모 상세페이지로 이동합니다.
-  const handleLink = () => {
-    expoRouter.push(`detail/${date}`);
-  };
+  const handleLink = () => expoRouter.push(`detail/${date}`);
 
   return (
-    <AnimationContainer theme={themeType(theme)} width={cardWidth} style={{ opacity: opacityAni }}>
+    <AnimationContainer theme={conversionType(theme)} width={cardWidth} style={{ opacity: opacityAni }}>
       <Pressable onPress={handleLink}>
         <DateTextBox>
           <ThemeText fontFamily="Pretendard-Bold">{conversionTime(date)}</ThemeText>

@@ -1,24 +1,21 @@
 import { useEffect, useRef } from 'react';
 import { Animated } from 'react-native';
 
+/**
+ * fadeIn 애니메이션 커스텀 훅입니다.
+ * delay 시간을 인자로 받아, 커스텀하여 활용할 수 있습니다.
+ */
 export const useFadeInAnimation = (delay: number) => {
   const opacityAni = useRef(new Animated.Value(0)).current;
-  const translateAni = useRef(new Animated.Value(-30)).current;
 
+  // 투명도를 0 ~ 1로 설정하는 애니메이션 입니다.
   useEffect(() => {
     const animationTime = setTimeout(() => {
-      Animated.parallel([
-        Animated.timing(opacityAni, {
-          toValue: 1,
-          duration: 1000,
-          useNativeDriver: true,
-        }),
-        Animated.timing(translateAni, {
-          toValue: 0,
-          duration: 1000,
-          useNativeDriver: true,
-        }),
-      ]).start();
+      Animated.timing(opacityAni, {
+        toValue: 1,
+        duration: 1000,
+        useNativeDriver: true,
+      }).start();
     }, delay);
 
     return () => clearTimeout(animationTime);
@@ -26,6 +23,5 @@ export const useFadeInAnimation = (delay: number) => {
 
   return {
     opacityAni,
-    translateAni,
   };
 };

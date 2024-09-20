@@ -1,5 +1,5 @@
-import { themeType } from '@/constants/theme';
 import { ThemeContext } from '@/contexts/themProvider';
+import { conversionType } from '@/utils/conversion-type';
 import { useRoute } from '@react-navigation/native';
 import { useContext, useRef } from 'react';
 import { Animated } from 'react-native';
@@ -24,8 +24,8 @@ export default function ThemeButton() {
     }).start();
   };
   return (
-    <Button name={name} theme={themeType(theme)} onPress={name === 'index' ? handleTheme : undefined}>
-      <ButtonText theme={themeType(theme)} style={{ left: animation }} />
+    <Button name={name} theme={conversionType(theme)} onPress={name === 'index' ? handleTheme : undefined}>
+      <ButtonText theme={conversionType(theme)} style={{ left: animation }} />
     </Button>
   );
 }

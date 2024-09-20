@@ -4,7 +4,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { useContext } from 'react';
 import { ThemeContext } from '@/contexts/themProvider';
 import { StyleSheet, View } from 'react-native';
-import { darkTheme, lightTheme, themeType } from '@/constants/theme';
+import { DARK_THEME, LIGHT_THEME } from '@/constants/theme';
 import HeaderText from './header-text/header-text';
 import HeaderLeft from './header-left/header-left';
 
@@ -33,10 +33,10 @@ const styles = StyleSheet.create({
     paddingVertical: 20,
   },
   light: {
-    backgroundColor: lightTheme.headerBg,
+    backgroundColor: LIGHT_THEME.headerBg,
   },
   dark: {
-    backgroundColor: darkTheme.headerBg,
+    backgroundColor: DARK_THEME.headerBg,
   },
   textContainer: {
     zIndex: -1,

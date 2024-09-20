@@ -1,3 +1,6 @@
+/**
+ * 날짜 데이터를 인자로 받고 포맷하는 함수입니다.
+ */
 export const conversionTime = (dateData: string) => {
   const date = new Date(Number(dateData));
   const month = date.getMonth() + 1;

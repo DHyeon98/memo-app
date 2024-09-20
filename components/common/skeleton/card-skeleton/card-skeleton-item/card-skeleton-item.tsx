@@ -1,15 +1,15 @@
-import { themeType } from '@/constants/theme';
 import { ThemeContext } from '@/contexts/themProvider';
 import { useContext } from 'react';
 import SkeletonItem from '../../skeleton-Item';
 import styled from 'styled-components/native';
+import { conversionType } from '@/utils/conversion-type';
 
 export default function CardSkeletonItem() {
   const { theme } = useContext(ThemeContext);
 
   return (
     <Container>
-      <SkeletonBox theme={themeType(theme)}>
+      <SkeletonBox theme={conversionType(theme)}>
         <SkeletonItemContainer width="50%">
           <SkeletonItem />
         </SkeletonItemContainer>

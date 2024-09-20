@@ -1,7 +1,7 @@
 import SortSvg from '../../svg/sort';
 import { useContext } from 'react';
 import { ThemeContext } from '@/contexts/themProvider';
-import { themeType } from '@/constants/theme';
+import { conversionType } from '@/utils/conversion-type';
 import SortList from './sort-list/sort-list';
 import { View } from 'react-native';
 import styled from 'styled-components/native';
@@ -14,7 +14,7 @@ export default function Sort() {
   return (
     <View>
       <FlexContainer onPress={openModal}>
-        <SortSvg width={30} height={30} fill={themeType(theme).sortFill} />
+        <SortSvg width={30} height={30} fill={conversionType(theme).sortFill} />
         <ThemeText fontSize="16px" fontFamily="Pretendard-Bold">
           보기
         </ThemeText>

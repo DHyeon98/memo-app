@@ -1,4 +1,4 @@
-import { extractHeaderText } from '@/constants/header-text';
+import { extractHeaderText } from '@/utils/header-text';
 import { useRoute } from '@react-navigation/native';
 import ThemeText from '../../theme-text/theme-text';
 

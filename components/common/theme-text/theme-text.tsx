@@ -1,5 +1,5 @@
-import { themeType } from '@/constants/theme';
 import { ThemeContext } from '@/contexts/themProvider';
+import { conversionType } from '@/utils/conversion-type';
 import { PropsWithChildren, useContext } from 'react';
 import styled from 'styled-components/native';
 
@@ -21,7 +21,7 @@ export default function ThemeText({
 }: PropsWithChildren<ThemeTextType>) {
   const { theme } = useContext(ThemeContext);
   return (
-    <Text numberOfLines={numberOfLines} theme={themeType(theme)} fontSize={fontSize} fontFamily={fontFamily}>
+    <Text numberOfLines={numberOfLines} theme={conversionType(theme)} fontSize={fontSize} fontFamily={fontFamily}>
       {children}
     </Text>
   );

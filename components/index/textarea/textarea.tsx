@@ -1,4 +1,4 @@
-import { darkTheme, lightTheme } from '@/constants/theme';
+import { DARK_THEME, LIGHT_THEME } from '@/constants/theme';
 import { ThemeContext } from '@/contexts/themProvider';
 import { useContext } from 'react';
 import { StyleSheet, TextInput, TextInputProps } from 'react-native';
@@ -36,12 +36,12 @@ const styles = StyleSheet.create({
     fontFamily: 'Pretendard',
   },
   light: {
-    backgroundColor: `${lightTheme.inputBg}`,
-    color: `${lightTheme.textColor}`,
+    backgroundColor: `${LIGHT_THEME.inputBg}`,
+    color: `${LIGHT_THEME.textColor}`,
   },
   dark: {
-    backgroundColor: `${darkTheme.inputBg}`,
-    color: `${darkTheme.textColor}`,
+    backgroundColor: `${DARK_THEME.inputBg}`,
+    color: `${DARK_THEME.textColor}`,
   },
   details: {
     width: '100%',
