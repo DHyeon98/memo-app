@@ -47,7 +47,6 @@ const Container = styled.View`
 const ButtonBox = styled.View`
   height: 38px;
   width: 38px;
-  flex-shrink: 0;
 `;
 const styles = StyleSheet.create({
   light: {

@@ -5,11 +5,16 @@ import { useContext, useRef } from 'react';
 import { Animated } from 'react-native';
 import styled from 'styled-components/native';
 
+/**
+ * 다크 모드의 상태를 변경할 때 사용하는 컴포넌트 입니다.
+ */
 export default function ThemeButton() {
   const { theme, toggleTheme } = useContext(ThemeContext);
   const animation = useRef(new Animated.Value(1)).current;
   const { name } = useRoute();
 
+  // 상호작용시 다크 모드의 상태가 변경되고,
+  // 약간의 bounce가 있는 상태로 애니메이션이 실행됩니다.
   const handleTheme = () => {
     toggleTheme();
     Animated.spring(animation, {

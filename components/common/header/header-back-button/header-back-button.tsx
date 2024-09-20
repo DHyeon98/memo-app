@@ -9,7 +9,7 @@ import { Pressable } from 'react-native';
  */
 export default function HeaderBackButton({ theme }: ThemePropType) {
   const expoRouter = useRouter();
-  // 버튼을 눌렀을 때 해당 페이지를 방문하기 전 페이지로 돌아갑니다.
+  // 상호작용 시 해당 페이지를 방문하기 전 페이지로 돌아갑니다.
   const handleBack = () => {
     expoRouter.back();
   };

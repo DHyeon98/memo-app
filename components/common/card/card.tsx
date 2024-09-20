@@ -7,11 +7,16 @@ import ThemeText from '../theme-text/theme-text';
 interface CardType {
   data: DataType[];
 }
+
+/**
+ * 메모 카드 컴포넌트 입니다.
+ */
 export default function Card({ data }: CardType) {
   const [columNum, setColumNum] = useState(1);
   const [key, setKey] = useState('');
   const { sort } = useContext(SortContext);
 
+  // 정렬 상태가 변할 때마다 FlatList를 변경하기 위한 코드 입니다.
   useEffect(() => {
     setKey(sort);
     setColumNum(sort === 'GRID' ? 2 : 1);

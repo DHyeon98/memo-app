@@ -16,6 +16,9 @@ interface CardItemType {
   delay: number;
 }
 
+/**
+ * 메모 카드의 내용을 담고 있는 컴포넌트 입니다.
+ */
 export default function CardItem({ text, date, delay }: CardItemType) {
   const { sort } = useContext(SortContext);
   const { theme } = useContext(ThemeContext);
@@ -23,6 +26,8 @@ export default function CardItem({ text, date, delay }: CardItemType) {
   const expoRouter = useRouter();
   const { width } = useWindowDimensions();
   const cardWidth = getCardWidth(sort, width);
+
+  // 상호작용 시 해당 메모 상세페이지로 이동합니다.
   const handleLink = () => {
     expoRouter.push(`detail/${date}`);
   };

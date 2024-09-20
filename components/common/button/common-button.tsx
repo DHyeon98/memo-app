@@ -1,5 +1,5 @@
 import { PropsWithChildren } from 'react';
-import { ButtonProps, PressableProps } from 'react-native';
+import { PressableProps } from 'react-native';
 import styled from 'styled-components/native';
 
 interface UtilButtonType {
@@ -9,6 +9,10 @@ interface StyledPropsType {
   backgroundColor: string;
 }
 
+/**
+ * 공통 버튼 컴포넌트 입니다.
+ * active 스타일을 주기 위해 onPressIn과 onPressOut을 인자로 받습니다.
+ */
 export default function CommonButton(props: PropsWithChildren<PressableProps & UtilButtonType>) {
   return (
     <Button

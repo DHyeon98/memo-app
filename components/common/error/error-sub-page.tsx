@@ -3,8 +3,12 @@ import ThemeText from '../theme-text/theme-text';
 import CommonButton from '../button/common-button';
 import { useRouter } from 'expo-router';
 
+/**
+ * 서브 페이지 에러 컴포넌트 입니다.
+ */
 export default function ErrorSubPage() {
   const expoRouter = useRouter();
+  // 상호작용 시 메인 페이지로 이동합니다.
   const handlePushHome = () => {
     expoRouter.replace('/');
   };
